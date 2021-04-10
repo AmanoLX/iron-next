@@ -1,6 +1,12 @@
 import './App.css';
+// import Navbar from './components/Navbar';
 
 function App() {
-	return <div className='App'>Test Michel again</div>;
+	return (
+		<div className='App'>
+			{/* <Navbar /> */}
+			Test test test
+		</div>
+	);
 }
 export default App;
