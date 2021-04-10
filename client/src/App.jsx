@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainNavbar from './components/MainNavbar';
 import SignUp from './views/SignUp';
-// import Navbar from './components/Navbar';
 
 export class App extends Component {
 	render() {
 		return (
 			<div>
-				Hi welcome
 				<BrowserRouter>
+					<MainNavbar />
 					<Switch>
 						{/* <Route path="/" component={Home} exact /> */}
 						<Route path='/sign-up' component={SignUp} redirect='/' exact />
