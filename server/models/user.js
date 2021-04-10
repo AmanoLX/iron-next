@@ -14,6 +14,33 @@ const schema = new mongoose.Schema({
     trim: true
   },
   passwordHashAndSalt: {
+    type: String,
+    required: true
+  },
+  graduateType: {
+    type: String,
+    enum: ['UX/UI Graduate', 'WebDev Graduate'],
+    required: true
+  },
+  profilePicture: {
+    type: String
+  },
+  yearOfGraduation: {
+    type: String
+  },
+  bio: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  country: {
+    type: String
+  },
+  githubURL: {
+    type: String
+  },
+  linkedInURL: {
     type: String
   }
 });

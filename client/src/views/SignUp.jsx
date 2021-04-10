@@ -8,13 +8,13 @@ class SignUp extends Component {
 		name: '',
 		email: '',
 		password: '',
-		role: '',
+		graduateType: '',
 	};
 
 	handleFormSubmission = async event => {
 		event.preventDefault();
-		const { name, email, password, role } = this.state;
-		const user = await signUp({ name, email, password, role });
+		const { name, email, password, graduateType } = this.state;
+		const user = await signUp({ name, email, password, graduateType });
 		this.props.onUserChange(user);
 	};
 
@@ -54,20 +54,20 @@ class SignUp extends Component {
 						onChange={this.handleInputChange}
 					/>
 
-					<label htmlFor='role-input'>
-						Are you an individual or a shelter?
+					<label htmlFor='graduate-input'>
+						Are you a Designer or a Web Developer?
 					</label>
 					<select
-						id='role-input'
-						name='role'
+						id='graduate-input'
+						name='graduateType'
 						required
-						value={this.state.role}
+						value={this.state.graduateType}
 						onChange={this.handleInputChange}>
 						<option value='' disabled>
-							Individual or a shelter?
+							Designer or Web Dev?
 						</option>
-						<option value='shelter'>Shelter</option>
-						<option value='individual'>Individual</option>
+						<option value='UX/UI Graduate'>UX/UI Design</option>
+						<option value='WebDev Graduate'>Web Development</option>
 					</select>
 
 					<label htmlFor='password-input'>Password</label>
