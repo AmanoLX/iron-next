@@ -18,7 +18,7 @@ export const signOut = async () => {
 	await api.post('/authentication/sign-out');
 };
 
-// export const verify = async () => {
-//   const response = await api.get('/authentication/verify');
-//   return response.data.user;
-// };
+export const verify = async () => {
+	const response = await api.get('/authentication/verify');
+	return response.data.user;
+};

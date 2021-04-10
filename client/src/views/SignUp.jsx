@@ -15,7 +15,8 @@ class SignUp extends Component {
 		event.preventDefault();
 		const { name, email, password, graduateType } = this.state;
 		const user = await signUp({ name, email, password, graduateType });
-		this.props.onUserChange(user);
+		console.log(user);
+		//this.props.onUserChange(user);
 	};
 
 	handleInputChange = event => {

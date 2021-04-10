@@ -7,6 +7,7 @@ export class App extends Component {
 	render() {
 		return (
 			<div>
+				Hi welcome
 				<BrowserRouter>
 					<Switch>
 						{/* <Route path="/" component={Home} exact /> */}
