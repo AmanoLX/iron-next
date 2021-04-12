@@ -13,6 +13,7 @@ class SignIn extends Component {
 		event.preventDefault();
 		const { email, password } = this.state;
 		const user = await signIn({ email, password });
+		console.log(user);
 		this.props.onUserChange(user);
 	};
 
@@ -26,32 +27,52 @@ class SignIn extends Component {
 	render() {
 		return (
 			<main>
-				<header>
-					<h1>Sign In</h1>
-				</header>
-				<form onSubmit={this.handleFormSubmission}>
-					<label htmlFor='email-input'>Email</label>
-					<input
-						id='email-input'
-						type='email'
-						placeholder='james@example.com'
-						name='email'
-						value={this.state.email}
-						onChange={this.handleInputChange}
-					/>
+				<div className='container mt-5'>
+					<header>
+						<h1>Sign In</h1>
+					</header>
+					<form onSubmit={this.handleFormSubmission}>
+						<div className='row g-3'>
+							{/* Email */}
+							<div className='col-md-6 mb-3'>
+								<label htmlFor='email-input' className='form-label'>
+									Email
+								</label>
+								<input
+									className='form-control'
+									type='email'
+									id='email-input'
+									aria-describedby='email'
+									name='email'
+									required
+									value={this.state.email}
+									onChange={this.handleInputChange}
+								/>
+							</div>
+							{/* Password */}
+							<div className='col-md-6 mb-4'>
+								<label htmlFor='password-input' className='form-label'>
+									Password
+								</label>
+								<input
+									className='form-control'
+									id='password-input'
+									type='password'
+									name='password'
+									required
+									value={this.state.password}
+									onChange={this.handleInputChange}
+								/>
+							</div>
+						</div>
 
-					<label htmlFor='password-input'>Password</label>
-					<input
-						id='password-input'
-						type='password'
-						placeholder='A secure password'
-						name='password'
-						value={this.state.password}
-						onChange={this.handleInputChange}
-					/>
-
-					<button>Sign In</button>
-				</form>
+						<div className='d-grid'>
+							<button className='btn btn-primary' type='submit'>
+								Sign In
+							</button>
+						</div>
+					</form>
+				</div>
 			</main>
 		);
 	}
