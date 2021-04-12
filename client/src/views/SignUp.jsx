@@ -1,5 +1,3 @@
-// Change for our project
-
 import React, { Component } from 'react';
 
 import { signUp } from './../services/authentication';
@@ -9,20 +7,38 @@ class SignUp extends Component {
 		name: '',
 		email: '',
 		password: '',
+		profilePicture: '',
 	};
 
 	handleFormSubmission = async event => {
 		event.preventDefault();
-		const { name, email, password } = this.state;
-		const user = await signUp({ name, email, password });
+		const { name, email, password, profilePicture } = this.state;
+
+		const user = await signUp({ name, email, password, profilePicture });
 		console.log(user);
 		this.props.onUserChange(user);
+
+		// const data = new FormData();
+		// const values = { name, email, password, profilePicture };
+		// for (let key in values) {
+		// 	data.append(key, values[key]);
+		// }
+		// const user = await signUp(data);
+		// this.props.onUserChange(user);
 	};
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
 		this.setState({
 			[name]: value,
+		});
+	};
+
+	handleFileInputChange = event => {
+		const { name, files } = event.target;
+		const file = files[0];
+		this.setState({
+			[name]: file,
 		});
 	};
 
@@ -83,6 +99,27 @@ class SignUp extends Component {
 								/>
 							</div>
 						</div>
+
+						<div className='custom-file mb-4'>
+							<label className='custom-file-label' for='customFile'>
+								Choose a Profile Picture
+							</label>
+							<input
+								type='file'
+								className='custom-file-input'
+								id='profile-picture-input'
+								name='profilePicture'
+								onChange={this.handleFileInputChange}
+							/>
+						</div>
+
+						{/* <label htmlFor='input-picture'>Picture</label>
+						<input
+							id='input-picture'
+							type='file'
+							name='picture'
+							onChange={this.handleFileInputChange}
+						/> */}
 
 						{/* <div className='mb-4'>
 							<label htmlFor='graduate-input'>

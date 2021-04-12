@@ -17,12 +17,12 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profilePicture: {
+    type: String
+  },
   graduateType: {
     type: String,
     enum: ['WebDev Graduate', 'UX/UI Graduate']
-  },
-  profilePicture: {
-    type: String
   },
   yearOfGraduation: {
     type: String

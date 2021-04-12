@@ -12,6 +12,9 @@ router.post(
   '/sign-up',
   fileUploadMiddleWare.single('picture'),
   async (req, res, next) => {
+    console.log(req.body);
+    console.log(req.file);
+
     let picture;
     if (req.file) {
       picture = req.file.path;
@@ -19,12 +22,12 @@ router.post(
 
     const { name, email, password } = req.body;
     try {
-      const hash = await bcryptjs(password, 10);
+      const hash = await bcryptjs.hash(password, 10);
       const user = await User.create({
         name,
         email,
         passwordHashAndSalt: hash,
-        profilePicture: picture
+        picture
       });
       req.session.userId = user._id;
       res.json({ user });
