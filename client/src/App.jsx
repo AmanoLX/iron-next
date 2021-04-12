@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
-// import NavbarSignedOut from './components/NavbarSignedOut';
-// import NavbarSignedIn from './components/NavbarSignedIn';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+
+import { signOut, verify } from './services/authentication';
+
+import ProtectedRoute from './components/ProtectedRoute';
+
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
+import Home from './views/Home';
 import Profile from './views/profile/Profile';
 
 export class App extends Component {
 	state = {
 		user: null,
+		loaded: false,
 	};
 
-	// async componentDidMount() {
-	//   const user = await verify();
-	//   this.handleUserChange(user);
-	//   this.setState({ loaded: true });
-	// }
+	async componentDidMount() {
+		const user = await verify();
+		this.handleUserChange(user);
+		this.setState({ loaded: true });
+	}
 
 	handleUserChange = user => {
 		this.setState({ user });
 	};
 
+	handleSignOut = async () => {
+		await signOut();
+		this.handleUserChange(null);
+	};
+
 	render() {
+		const user = this.state.user;
 		return (
 			<div>
 				<BrowserRouter>
@@ -56,8 +67,10 @@ export class App extends Component {
 											</Link>
 										</li>
 										<li className='nav-item'>
-											<Link className='nav-link' to='/sign-up'>
-												<button className='btn btn-outline-secondary'>
+											<Link className='nav-link' to='/sign-out'>
+												<button
+													className='btn btn-outline-secondary'
+													onClick={this.handleSignOut}>
 													Sign Out
 												</button>
 											</Link>
@@ -84,31 +97,42 @@ export class App extends Component {
 							</div>
 						</div>
 					</nav>
-
-					<Switch>
-						{/* <Route path="/" component={Home} exact /> */}
-						<Route
-							path='/sign-in'
-							render={props => (
-								<SignIn {...props} onUserChange={this.handleUserChange} />
+					<main>
+						<div className='container mt-5'>
+							{this.state.loaded && (
+								<Switch>
+									<Route path='/' component={Home} exact />
+									<ProtectedRoute
+										path='/sign-in'
+										render={props => (
+											<SignIn {...props} onUserChange={this.handleUserChange} />
+										)}
+										authorized={!user}
+										redirect='/'
+										exact
+									/>
+									<ProtectedRoute
+										path='/sign-up'
+										render={props => (
+											<SignUp {...props} onUserChange={this.handleUserChange} />
+										)}
+										authorized={!user}
+										redirect='/'
+										exact
+									/>
+									<ProtectedRoute
+										path='/profile'
+										render={props => (
+											<Profile {...props} user={this.state.user} />
+										)}
+										authorized={user}
+										redirect='/sign-in'
+										exact
+									/>
+								</Switch>
 							)}
-							redirect='/'
-							exact
-						/>
-						<Route
-							path='/sign-up'
-							render={props => (
-								<SignUp {...props} onUserChange={this.handleUserChange} />
-							)}
-							redirect='/'
-							exact
-						/>
-						<Route
-							path='/profile'
-							render={props => <Profile {...props} user={this.state.user} />}
-							exact
-						/>
-					</Switch>
+						</div>
+					</main>
 				</BrowserRouter>
 			</div>
 		);

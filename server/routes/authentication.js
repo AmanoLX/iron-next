@@ -5,28 +5,34 @@ const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 
+const fileUploadMiddleWare = require('./../middleware/file-upload');
 const router = new Router();
 
-router.post('/sign-up', (req, res, next) => {
-  const { name, email, password, graduateType } = req.body;
-  bcryptjs
-    .hash(password, 10)
-    .then((hash) => {
-      return User.create({
+router.post(
+  '/sign-up',
+  fileUploadMiddleWare.single('picture'),
+  async (req, res, next) => {
+    let picture;
+    if (req.file) {
+      picture = req.file.path;
+    }
+
+    const { name, email, password } = req.body;
+    try {
+      const hash = await bcryptjs(password, 10);
+      const user = await User.create({
         name,
         email,
         passwordHashAndSalt: hash,
-        graduateType
+        profilePicture: picture
       });
-    })
-    .then((user) => {
       req.session.userId = user._id;
       res.json({ user });
-    })
-    .catch((error) => {
+    } catch (error) {
       next(error);
-    });
-});
+    }
+  }
+);
 
 router.post('/sign-in', (req, res, next) => {
   let user;
@@ -56,6 +62,11 @@ router.post('/sign-in', (req, res, next) => {
 router.post('/sign-out', (req, res) => {
   req.session.destroy();
   res.json({});
+});
+
+router.get('/verify', (req, res) => {
+  const user = req.user || null;
+  res.json({ user: user });
 });
 
 module.exports = router;
