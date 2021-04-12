@@ -32,7 +32,7 @@ export class App extends Component {
         Let's see if this works ...
         <BrowserRouter>
           <h1>IRONNEXT</h1>
-          {this.state.loaded && (
+
             <Switch>
               {/* <Route path="/" component={Home} exact /> */}
               {/* <Route path="/sign-up" component={SignUp} redirect="/" exact /> */}
@@ -47,7 +47,6 @@ export class App extends Component {
 
               <Route path="/project/:id" component={SingleProject} exact />
             </Switch>
-          )}
         </BrowserRouter>
       </div>
     );

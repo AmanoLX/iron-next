@@ -122,8 +122,8 @@ class CreateProject extends Component {
             <div className="col">
               <label htmlFor="input-skills">Skills Needed</label>
               <select
-                id="input-skilss"
-                name="skills"
+                id="input-skills"
+                name="skillsNeeded"
                 value={this.state.skillsNeeded}
                 onChange={this.handleInputChange}
                 required
@@ -157,23 +157,23 @@ class CreateProject extends Component {
               <label htmlFor="input-creator">Project Creator</label>
               <input
                 id="input-creator"
-                name="creator"
+                name="projectCreator"
                 type="text"
                 placeholder="Project Creator"
                 value={this.state.projectCreator}
                 onChange={this.handleInputChange}
-                required
+                
               />
             </div>
             <div className="col">
               <label htmlFor="input-status">Project Status</label>
               <select
                 id="input-status"
-                name="status"
+                name="projectStatus"
                 value={this.state.projectStatus}
                 onChange={this.handleInputChange}
               >
-                <option value="">status</option>
+                <option value="" disabled>status</option>
                 <option value="not-started">Not Started Yet</option>
                 <option value="in-progress">In Progress</option>
                 <option value="completed">Completed</option>
