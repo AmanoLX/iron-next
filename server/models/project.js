@@ -1,23 +1,47 @@
-// THIS WILL BE THE PROJECT MODEL
+'use strict';
 
-// 'use strict';
+const mongoose = require('mongoose');
 
-// const mongoose = require('mongoose');
+const projectSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  roleNeeded: {
+    type: String,
+    enum: ['UX/UI Graduate', 'WebDev Graduate'],
+    required: true
+  },
+  skillsNeeded: {
+    type: String,
+    enum: [
+      'User Research',
+      'Wireframes/Prototyping',
+      'Interface Design',
+      'Vanilla Javascript',
+      'HTML/CSS',
+      'React JS',
+      'Node JS'
+    ],
+    required: true
+  },
+  projectCreator: {
+    type: String,
+    required: true
+  },
+  projectStatus: {
+    type: String,
+    enum: ['Not started yet', 'In progress', 'Completed'],
+    required: true
+  },
+  timestamps: {
+    createdAt: 'addedDate',
+    updatedAt: 'editDate'
+  }
+});
 
-// const schema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     trim: true
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     lowercase: true,
-//     trim: true
-//   },
-//   passwordHashAndSalt: {
-//     type: String
-//   }
-// });
-
-// module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model('Project', projectSchema);
