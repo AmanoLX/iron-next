@@ -48,6 +48,12 @@ export class App extends Component {
 						{this.state.loaded && (
 							<Switch>
 								<Route path='/' component={Home} exact />
+								<Route
+									path='/resource/create'
+									component={CreateResource}
+									redirect='/resource/:id'
+									exact
+								/>
 								<ProtectedRoute
 									path='/sign-in'
 									render={props => (
