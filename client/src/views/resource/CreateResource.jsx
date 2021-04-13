@@ -8,39 +8,41 @@ class CreateResource extends Component {
     url: '',
     type: '',
     description: '',
-    creator: '',
-    timestamps: ''
+    creator: ''
   };
 
   handleFormSubmission = async (event) => {
     event.preventDefault();
     const { topic, title, url, type, description } = this.state;
-    // const data = {
-    //   topic,
-    //   title,
-    //   url,
-    //   type,
-    //   description
-    // };
-    // const body = new FormData();
-    // for (let key in data) {
-    //   const value = data[key];
-    //   if (value instanceof Array) {
-    //     for (let item of value) {
-    //       body.append(key, item);
-    //     }
-    //   } else {
-    //     body.append(key, value);
-    //   }
-    // }
-    // const resource = await createResource(body);
-    const resource = await createResource({
+    const data = {
       topic,
       title,
       url,
       type,
       description
-    });
+    };
+    /*
+    const body = new FormData();
+    for (let key in data) {
+      const value = data[key];
+      if (value instanceof Array) {
+        for (let item of value) {
+          body.append(key, item);
+        }
+      } else {
+        body.append(key, value);
+      }
+    }
+    console.log(body);
+    */
+    const resource = await createResource(data);
+    // const resource = await createResource({
+    //   topic,
+    //   title,
+    //   url,
+    //   type,
+    //   description
+    // });
     this.props.history.push(`/resource/${resource._id}`);
   };
 
@@ -58,7 +60,7 @@ class CreateResource extends Component {
           <h1>Share a resource </h1>
         </header>
 
-        <form onSubmit="this.handleFormSubmission">
+        <form onSubmit={this.handleFormSubmission}>
           <div className="row">
             <div className="col">
               <label htmlFor="input-topic">Topic to share</label>

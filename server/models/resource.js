@@ -27,7 +27,7 @@ const resourceSchema = new mongoose.Schema(
       type: String
     },
     creator: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
   },

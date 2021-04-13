@@ -10,19 +10,19 @@ router.post('/create', async (req, res, next) => {
     title,
     url,
     type,
-    description,
-    creator,
-    timestamps
+    description
+    // creator,
+    // timestamps
   } = req.body;
   try {
+    console.log(req.body);
     const resource = await Resource.create({
       topic,
       title,
       url,
       type,
       description,
-      creator: req.user._id,
-      timestamps
+      creator: req.user._id
     });
     res.json({ resource });
     console.log(resource);
