@@ -26,54 +26,52 @@ class SignIn extends Component {
 
 	render() {
 		return (
-			<main>
-				<div className='container mt-5'>
-					<header>
-						<h1>Sign In</h1>
-					</header>
-					<form onSubmit={this.handleFormSubmission}>
-						<div className='row g-3'>
-							{/* Email */}
-							<div className='col-md-6 mb-3'>
-								<label htmlFor='email-input' className='form-label'>
-									Email
-								</label>
-								<input
-									className='form-control'
-									type='email'
-									id='email-input'
-									aria-describedby='email'
-									name='email'
-									required
-									value={this.state.email}
-									onChange={this.handleInputChange}
-								/>
-							</div>
-							{/* Password */}
-							<div className='col-md-6 mb-4'>
-								<label htmlFor='password-input' className='form-label'>
-									Password
-								</label>
-								<input
-									className='form-control'
-									id='password-input'
-									type='password'
-									name='password'
-									required
-									value={this.state.password}
-									onChange={this.handleInputChange}
-								/>
-							</div>
+			<>
+				<header>
+					<h1>Sign In</h1>
+				</header>
+				<form onSubmit={this.handleFormSubmission}>
+					<div className='row g-3'>
+						{/* Email */}
+						<div className='col-md-6 mb-3'>
+							<label htmlFor='email-input' className='form-label'>
+								Email
+							</label>
+							<input
+								className='form-control'
+								type='email'
+								id='email-input'
+								aria-describedby='email'
+								name='email'
+								required
+								value={this.state.email}
+								onChange={this.handleInputChange}
+							/>
 						</div>
+						{/* Password */}
+						<div className='col-md-6 mb-4'>
+							<label htmlFor='password-input' className='form-label'>
+								Password
+							</label>
+							<input
+								className='form-control'
+								id='password-input'
+								type='password'
+								name='password'
+								required
+								value={this.state.password}
+								onChange={this.handleInputChange}
+							/>
+						</div>
+					</div>
 
-						<div className='d-grid'>
-							<button className='btn btn-primary' type='submit'>
-								Sign In
-							</button>
-						</div>
-					</form>
-				</div>
-			</main>
+					<div className='d-grid'>
+						<button className='btn btn-primary' type='submit'>
+							Sign In
+						</button>
+					</div>
+				</form>
+			</>
 		);
 	}
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import { signOut, verify } from './services/authentication';
 
@@ -8,7 +8,9 @@ import ProtectedRoute from './components/ProtectedRoute';
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import Home from './views/Home';
+import ErrorPage from './views/ErrorPage';
 import Profile from './views/profile/Profile';
+import EditProfile from './views/profile/EditProfile';
 import Navbar from './components/Navbar';
 
 export class App extends Component {
@@ -71,6 +73,17 @@ export class App extends Component {
 										redirect='/sign-in'
 										exact
 									/>
+									<ProtectedRoute
+										path='/profile/edit'
+										render={props => (
+											<EditProfile {...props} user={this.state.user} />
+										)}
+										authorized={user}
+										redirect='/profile'
+										exact
+									/>
+									<Route path='/error' component={ErrorPage} />
+									<Redirect to='/error' />
 								</Switch>
 							)}
 						</div>
