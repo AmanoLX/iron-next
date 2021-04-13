@@ -5,6 +5,8 @@ import { signOut, verify } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
+import CreateResource from './views/resource/CreateResource';
+
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import Home from './views/Home';
