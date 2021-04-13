@@ -1,23 +1,42 @@
 // THIS WILL BE THE RESOURCE MODEL
 
-// 'use strict';
+'use strict';
 
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const schema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     trim: true
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     lowercase: true,
-//     trim: true
-//   },
-//   passwordHashAndSalt: {
-//     type: String
-//   }
-// });
+const resourceSchema = new mongoose.Schema(
+  {
+    topic: {
+      type: String,
+      enum: ['UX/UI Design', 'Web Development']
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    url: {
+      type: String,
+      required: true
+    },
+    type: {
+      type: String,
+      enum: ['book', 'video', 'article', 'blog', 'podcast', 'course'],
+      required: true
+    },
+    description: {
+      type: String
+    },
+    creator: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+    }
+  },
+  {
+    timestamps: {
+      createdAt: 'creationDate',
+      updatedAt: 'updateDate'
+    }
+  }
+);
 
-// module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model('Resource', resourceSchema);
