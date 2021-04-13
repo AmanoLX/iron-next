@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = ({ user, onSignOut }) => {
 	return (
@@ -36,14 +37,12 @@ const Navbar = ({ user, onSignOut }) => {
 								</div>
 								<div className='d-flex flex-row align-items-center'>
 									<li className='nav-item mr-2'>Welcome {user.name}</li>
-									{user.profilePicture && (
-										<li className='nav-item mr-2'>
-											<img
-												src={user.profilePicture}
-												alt={user.name}
-												className='profile-picture'></img>
-										</li>
-									)}
+									<li className='nav-item mr-2'>
+										<img
+											src={user.profilePicture}
+											alt={user.name}
+											className='profile-picture'></img>
+									</li>
 									<li className='nav-item'>
 										<Link className='nav-link' to='/profile'>
 											<button className='btn btn-secondary mr-2'>

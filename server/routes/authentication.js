@@ -10,7 +10,7 @@ const router = new Router();
 
 router.post(
   '/sign-up',
-  fileUploadMiddleWare.single('picture'),
+  fileUploadMiddleWare.single('profilePicture'),
   async (req, res, next) => {
     console.log(req.body);
     console.log(req.file);
@@ -27,7 +27,7 @@ router.post(
         name,
         email,
         passwordHashAndSalt: hash,
-        picture
+        profilePicture: picture
       });
       req.session.userId = user._id;
       res.json({ user });

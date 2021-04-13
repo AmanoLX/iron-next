@@ -14,17 +14,18 @@ class SignUp extends Component {
 		event.preventDefault();
 		const { name, email, password, profilePicture } = this.state;
 
-		const user = await signUp({ name, email, password, profilePicture });
+		// const user = await signUp({ name, email, password, profilePicture });
+		// console.log(user);
+		// this.props.onUserChange(user);
+
+		const data = new FormData();
+		const values = { name, email, password, profilePicture };
+		for (let key in values) {
+			data.append(key, values[key]);
+		}
+		const user = await signUp(data);
 		console.log(user);
 		this.props.onUserChange(user);
-
-		// const data = new FormData();
-		// const values = { name, email, password, profilePicture };
-		// for (let key in values) {
-		// 	data.append(key, values[key]);
-		// }
-		// const user = await signUp(data);
-		// this.props.onUserChange(user);
 	};
 
 	handleInputChange = event => {
@@ -99,7 +100,7 @@ class SignUp extends Component {
 						</div>
 					</div>
 
-					{/* <div className='custom-file mb-4'>
+					<div className='custom-file mb-4'>
 						<label className='custom-file-label' for='customFile'>
 							Choose a Profile Picture
 						</label>
@@ -107,10 +108,10 @@ class SignUp extends Component {
 							type='file'
 							className='custom-file-input'
 							id='input-picture'
-							name='picture'
+							name='profilePicture'
 							onChange={this.handleFileInputChange}
 						/>
-					</div> */}
+					</div>
 
 					<div className='d-grid'>
 						<button className='btn btn-primary' type='submit'>

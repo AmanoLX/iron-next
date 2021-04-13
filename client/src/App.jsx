@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { signOut, verify } from './services/authentication';
 
@@ -17,6 +17,7 @@ export class App extends Component {
 	state = {
 		user: null,
 		loaded: false,
+		loggedout: false,
 	};
 
 	async componentDidMount() {
@@ -32,63 +33,68 @@ export class App extends Component {
 	handleSignOut = async () => {
 		await signOut();
 		this.handleUserChange(null);
+		this.setState({ loggedout: true });
+		//this.props.history.push('/');
 	};
 
 	render() {
 		const user = this.state.user;
 		return (
 			<div>
-				<BrowserRouter>
-					<Navbar user={user} onSignOut={this.handleSignOut} />
+				<Navbar user={user} onSignOut={this.handleSignOut} />
 
-					<main>
-						<div className='container mt-5'>
-							{this.state.loaded && (
-								<Switch>
-									<Route path='/' component={Home} exact />
-									<ProtectedRoute
-										path='/sign-in'
-										render={props => (
-											<SignIn {...props} onUserChange={this.handleUserChange} />
-										)}
-										authorized={!user}
-										redirect='/'
-										exact
-									/>
-									<ProtectedRoute
-										path='/sign-up'
-										render={props => (
-											<SignUp {...props} onUserChange={this.handleUserChange} />
-										)}
-										authorized={!user}
-										redirect='/'
-										exact
-									/>
-									<ProtectedRoute
-										path='/profile'
-										render={props => (
-											<Profile {...props} user={this.state.user} />
-										)}
-										authorized={user}
-										redirect='/sign-in'
-										exact
-									/>
-									<ProtectedRoute
-										path='/profile/edit'
-										render={props => (
-											<EditProfile {...props} user={this.state.user} />
-										)}
-										authorized={user}
-										redirect='/profile'
-										exact
-									/>
-									<Route path='/error' component={ErrorPage} />
+				<main>
+					<div className='container mt-5'>
+						{this.state.loaded && (
+							<Switch>
+								<Route path='/' component={Home} exact />
+								<ProtectedRoute
+									path='/sign-in'
+									render={props => (
+										<SignIn {...props} onUserChange={this.handleUserChange} />
+									)}
+									authorized={!user}
+									redirect='/'
+									exact
+								/>
+								<ProtectedRoute
+									path='/sign-up'
+									render={props => (
+										<SignUp {...props} onUserChange={this.handleUserChange} />
+									)}
+									authorized={!user}
+									redirect='/profile'
+									exact
+								/>
+								<ProtectedRoute
+									path='/profile'
+									render={props => (
+										<Profile {...props} user={this.state.user} />
+									)}
+									authorized={user}
+									redirect='/sign-in'
+									exact
+								/>
+								<ProtectedRoute
+									path='/profile/edit'
+									render={props => (
+										<EditProfile {...props} user={this.state.user} />
+									)}
+									authorized={user}
+									redirect='/profile'
+									exact
+								/>
+								<Route path='/error' component={ErrorPage} />
+								{this.state.loggedout ? (
+									<Redirect to='/' />
+								) : (
 									<Redirect to='/error' />
-								</Switch>
-							)}
-						</div>
-					</main>
-				</BrowserRouter>
+								)}
+								{/* <Redirect to='/error' /> */}
+							</Switch>
+						)}
+					</div>
+				</main>
 			</div>
 		);
 	}
