@@ -12,23 +12,23 @@ class CreateProject extends Component {
     projectStatus: []
   };
 
-  handleFormSubmission = async event => {
+  handleFormSubmission = async (event) => {
     event.preventDefault();
     const {
-        title,
-        description,
-        roleNeeded,
-        skillsNeeded,
-        projectCreator,
-        projectStatus
+      title,
+      description,
+      roleNeeded,
+      skillsNeeded,
+      projectCreator,
+      projectStatus
     } = this.state;
     const data = {
-        title,
-        description,
-        roleNeeded,
-        skillsNeeded,
-        projectCreator,
-        projectStatus
+      title,
+      description,
+      roleNeeded,
+      skillsNeeded,
+      projectCreator,
+      projectStatus
     };
     const body = new FormData();
     for (let key in data) {
@@ -45,28 +45,28 @@ class CreateProject extends Component {
     this.props.history.push(`/project/${project._id}`);
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
 
-//   handleCheckboxInputChange = event => {
-//     const { name, checked } = event.target;
-//     this.setState({
-//       [name]: checked
-//     });
-//   };
+  //   handleCheckboxInputChange = event => {
+  //     const { name, checked } = event.target;
+  //     this.setState({
+  //       [name]: checked
+  //     });
+  //   };
 
-//   handleFileInputChange = event => {
-//     const { name, files } = event.target;
-//     const arrayOfFiles = [];
-//     for (const file of files) arrayOfFiles.push(file);
-//     this.setState({
-//       [name]: arrayOfFiles
-//     });
-//   };
+  //   handleFileInputChange = event => {
+  //     const { name, files } = event.target;
+  //     const arrayOfFiles = [];
+  //     for (const file of files) arrayOfFiles.push(file);
+  //     this.setState({
+  //       [name]: arrayOfFiles
+  //     });
+  //   };
 
   handleCheckboxGroupChange = (name, values) => {
     this.setState({
@@ -92,7 +92,7 @@ class CreateProject extends Component {
             required
           />
 
-        <label htmlFor="input-description">Description</label>
+          <label htmlFor="input-description">Description</label>
           <textarea
             id="input-description"
             name="description"
@@ -106,7 +106,7 @@ class CreateProject extends Component {
               <label htmlFor="input-roles">Role Needed</label>
               <select
                 id="input-roles"
-                name="roles"
+                name="rolesNeeded"
                 value={this.state.rolesNeeded}
                 onChange={this.handleInputChange}
                 required
@@ -132,7 +132,9 @@ class CreateProject extends Component {
                   Skills Needed
                 </option>
                 <option value="user-research">User Research</option>
-                <option value="wireframes-prototyping">Wireframes/Prototyping</option>
+                <option value="wireframes-prototyping">
+                  Wireframes/Prototyping
+                </option>
                 <option value="interface-design">Interface Design</option>
                 <option value="html-css">HTML/CSS</option>
                 <option value="vanilla-js">Vanilla Javascript</option>
@@ -151,7 +153,6 @@ class CreateProject extends Component {
             }
           /> */}
 
-
           <div className="row">
             <div className="col">
               <label htmlFor="input-creator">Project Creator</label>
@@ -162,7 +163,6 @@ class CreateProject extends Component {
                 placeholder="Project Creator"
                 value={this.state.projectCreator}
                 onChange={this.handleInputChange}
-                
               />
             </div>
             <div className="col">
@@ -173,7 +173,9 @@ class CreateProject extends Component {
                 value={this.state.projectStatus}
                 onChange={this.handleInputChange}
               >
-                <option value="" disabled>status</option>
+                <option value="" disabled>
+                  status
+                </option>
                 <option value="not-started">Not Started Yet</option>
                 <option value="in-progress">In Progress</option>
                 <option value="completed">Completed</option>

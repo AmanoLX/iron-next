@@ -30,7 +30,7 @@ const projectSchema = new mongoose.Schema({
     required: true
   },
   projectCreator: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true
   },
   projectStatus: {
@@ -39,8 +39,8 @@ const projectSchema = new mongoose.Schema({
     required: true
   },
   timestamps: {
-    createdAt: 'addedDate',
-    updatedAt: 'editDate'
+    createdAt: Date,
+    updatedAt: Date
   }
 });
 
