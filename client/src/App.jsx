@@ -42,7 +42,7 @@ export class App extends Component {
 	render() {
 		const user = this.state.user;
 		return (
-			<div>
+			<>
 				<Navbar user={user} onSignOut={this.handleSignOut} />
 
 				<main>
@@ -103,7 +103,7 @@ export class App extends Component {
 						)}
 					</div>
 				</main>
-			</div>
+			</>
 		);
 	}
 }

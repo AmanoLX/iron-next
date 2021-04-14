@@ -76,8 +76,8 @@ class SignIn extends Component {
 												Sign In
 											</button>
 										</div>
-										<p class='card-text text-center'>
-											<small class='text-muted d-block'>
+										<p className='card-text text-center'>
+											<small className='text-muted d-block'>
 												Don't have an account?
 												<Link to='/sign-up'> Create one</Link>
 											</small>
