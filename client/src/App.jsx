@@ -46,7 +46,7 @@ export class App extends Component {
 				<Navbar user={user} onSignOut={this.handleSignOut} />
 
 				<main>
-					<div className='container mt-5'>
+					<div className='container'>
 						{this.state.loaded && (
 							<Switch>
 								<Route path='/' component={Home} exact />

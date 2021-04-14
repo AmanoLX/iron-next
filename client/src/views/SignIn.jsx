@@ -1,6 +1,5 @@
-// Change for our project
-
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { signIn } from './../services/authentication';
 
 class SignIn extends Component {
@@ -25,53 +24,71 @@ class SignIn extends Component {
 	};
 
 	render() {
+		const { email, password } = this.state;
 		return (
-			<>
-				<header>
-					<h1>Sign In</h1>
-				</header>
-				<form onSubmit={this.handleFormSubmission}>
-					<div className='row g-3'>
-						{/* Email */}
-						<div className='col-md-6 mb-3'>
-							<label htmlFor='email-input' className='form-label'>
-								Email
-							</label>
-							<input
-								className='form-control'
-								type='email'
-								id='email-input'
-								aria-describedby='email'
-								name='email'
-								required
-								value={this.state.email}
-								onChange={this.handleInputChange}
-							/>
+			<section className='d-flex justify-content-center align-items-center'>
+				<div className='card form-card bg-light'>
+					<div className='row g-0'>
+						<div className='col-md-5 card-image-col d-flex justify-content-center align-items-center'>
+							<img
+								class='img-fluid'
+								src='https://www.mswipe.com/assets/images/signin_marchant_mswipe_Illustrations.svg'
+								alt='signin'></img>
 						</div>
-						{/* Password */}
-						<div className='col-md-6 mb-4'>
-							<label htmlFor='password-input' className='form-label'>
-								Password
-							</label>
-							<input
-								className='form-control'
-								id='password-input'
-								type='password'
-								name='password'
-								required
-								value={this.state.password}
-								onChange={this.handleInputChange}
-							/>
+						<div className='col-md-7 card-content p-5'>
+							<div className='card-body'>
+								<h1 className='card-title text-center mb-5'>Welcome back</h1>
+								<form onSubmit={this.handleFormSubmission}>
+									<div className='row g-3'>
+										{/* Email */}
+										<div>
+											<label htmlFor='email-input' className='form-label'>
+												Email address
+											</label>
+											<input
+												className='form-control'
+												type='email'
+												id='email-input'
+												aria-describedby='email'
+												name='email'
+												required
+												value={email}
+												onChange={this.handleInputChange}
+											/>
+										</div>
+										{/* Password */}
+										<div className='mb-2'>
+											<label htmlFor='password-input' className='form-label'>
+												Password
+											</label>
+											<input
+												className='form-control'
+												id='password-input'
+												type='password'
+												name='password'
+												required
+												value={password}
+												onChange={this.handleInputChange}
+											/>
+										</div>
+										<div className='d-grid mb-5'>
+											<button className='btn btn-secondary' type='submit'>
+												Sign In
+											</button>
+										</div>
+										<p class='card-text text-center'>
+											<small class='text-muted d-block'>
+												Don't have an account?
+												<Link to='/sign-up'> Create one</Link>
+											</small>
+										</p>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
-
-					<div className='d-grid'>
-						<button className='btn btn-primary' type='submit'>
-							Sign In
-						</button>
-					</div>
-				</form>
-			</>
+				</div>
+			</section>
 		);
 	}
 }
