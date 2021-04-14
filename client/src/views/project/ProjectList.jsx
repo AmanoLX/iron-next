@@ -1,16 +1,16 @@
-// import { Link } from 'react-router-dom';
-// import PetItem from './PetItem';
+import { Link } from 'react-router-dom';
+import SingleProject from './SingleProject';
 
-// const PetList = ({ pets }) => {
-//   return (
-//     <div className="pet__list">
-//       {pets.map(pet => (
-//         <Link key={pet._id} to={`/pet/${pet._id}`}>
-//           <PetItem pet={pet} />
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// };
+const ProjectList = ({ projects }) => {
+  return (
+    <div className="project_list">
+      {projects.map(project => (
+        <Link key={project._id} to={`/project/${project._id}`}>
+          <SingleProject project={project} />
+        </Link>
+      ))}
+    </div>
+  );
+};
 
-// export default PetList;
+export default ProjectList;
