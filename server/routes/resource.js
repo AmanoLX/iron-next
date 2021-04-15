@@ -31,4 +31,23 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const resource = await Resource.findById(req.params.id).populate({
+      path: 'user'
+    });
+    //let application = null;
+    // let resource;
+    //   if (req.user) {
+    //     application = await Application.findOne({
+    //       pet: req.params.id,
+    //       individual: req.user._id
+    //     });
+    //   }
+    res.json({ resource: resource });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
