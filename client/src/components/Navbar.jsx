@@ -11,17 +11,17 @@ const Navbar = ({ user, onSignOut }) => {
 						Iron-next
 					</Link>
 					<button
-						class='navbar-toggler'
+						className='navbar-toggler'
 						type='button'
 						data-bs-toggle='collapse'
 						data-bs-target='#navbarNavDropdown'
 						aria-controls='navbarNavDropdown'
 						aria-expanded='false'
 						aria-label='Toggle navigation'>
-						<span class='navbar-toggler-icon'></span>
+						<span className='navbar-toggler-icon'></span>
 					</button>
-					<div class='collapse navbar-collapse' id='navbarNavDropdown'>
-						<ul class='navbar-nav'>
+					<div className='collapse navbar-collapse' id='navbarNavDropdown'>
+						<ul className='navbar-nav'>
 							<li className='nav-item dropdown text-white'>
 								<Link
 									className='nav-link dropdown-toggle text-dark'
