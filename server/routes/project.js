@@ -3,68 +3,74 @@ const express = require('express');
 
 const Project = require('./../models/project');
 //const User = require('./../models/user');
-const Application = require('./../models/application');
-
-const routeGuard = require('./../middleware/route-guard');
+// const Application = require('./../models/application');
 //const fileUpload = require('./../middleware/file-upload');
 
 const router = new express.Router();
 
-router.post('/create', routeGuard, async (req, res, next) => {
-  const { title, description, roleNeeded, skillsNeeded } = req.body;
+router.post('/create', async (req, res, next) => {
+  const {
+    title,
+    description,
+    roleNeeded,
+    skillsNeeded,
+    projectStatus
+  } = req.body;
   try {
     const project = await Project.create({
       title,
       description,
       roleNeeded,
-      skillsNeeded
+      skillsNeeded,
+      projectStatus
     });
     res.json({ project });
+    console.log(project);
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/list', async (req, res, next) => {
-  try {
-    const projects = await Project.find().sort({ addedDate: -1 }).limit(20);
-    res.json({ projects });
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get('/list', async (req, res, next) => {
+//   try {
+//     const projects = await Project.find().sort({ addedDate: -1 }).limit(20);
+//     res.json({ projects });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-router.get('/:id', async (req, res, next) => {
-  try {
-    const project = await Project.findById(req.params.id).populate(
-      'user',
-      'name'
-    );
-    let application = null;
-    if (req.user) {
-      application = await Application.findOne({
-        project: req.params.id,
-        user: req.user._id
-      });
-    }
-    res.json({ project, application });
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const project = await Project.findById(req.params.id).populate(
+//       'user',
+//       'name'
+//     );
+//     let application = null;
+//     if (req.user) {
+//       application = await Application.findOne({
+//         project: req.params.id,
+//         user: req.user._id
+//       });
+//     }
+//     res.json({ project, application });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-router.patch('/:id', async (req, res, next) => {
-  // ...
-});
+// router.patch('/:id', async (req, res, next) => {
+//   // ...
+// });
 
-router.delete('/:id', routeGuard, async (req, res, next) => {
-  try {
-    await Project.findByIdAndDelete(req.params.id);
-    res.json({});
-  } catch (error) {
-    next(error);
-  }
-});
+// router.delete('/:id', routeGuard, async (req, res, next) => {
+//   try {
+//     await Project.findByIdAndDelete(req.params.id);
+//     res.json({});
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 // router.post('/:id/participate', routeGuard, async (req, res, next) => {
 //     try {

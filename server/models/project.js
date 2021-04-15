@@ -31,7 +31,7 @@ const projectSchema = new mongoose.Schema({
   },
   projectCreator: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true
+    ref: 'User'
   },
   projectStatus: {
     type: String,
