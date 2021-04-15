@@ -5,6 +5,9 @@ import { signOut, verify } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
+import CreateResource from './views/resource/CreateResource';
+import CreateProject from './views/project/CreateProject';
+
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
 import Home from './views/Home';
@@ -46,24 +49,22 @@ export class App extends Component {
         <Navbar user={user} onSignOut={this.handleSignOut} />
 
         <main>
-          <div className="container mt-5">
+          <div className="container">
             {this.state.loaded && (
               <Switch>
                 <Route path="/" component={Home} exact />
                 <Route
                   path="/resource/create"
                   component={CreateResource}
-                  //authorized={!user}
                   redirect="/resource/:id"
                   exact
                 />
                 <Route
-                  path="/resource/:id"
-                  component={SingleResource}
-                  redirect="/resource/:id"
+                  path="/project/create"
+                  component={CreateProject}
+                  redirect="/project/:id"
                   exact
                 />
-
                 <ProtectedRoute
                   path="/sign-in"
                   render={(props) => (

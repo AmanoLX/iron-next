@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { signUp } from './../services/authentication';
 
 class SignUp extends Component {
@@ -44,82 +44,87 @@ class SignUp extends Component {
 	};
 
 	render() {
+		const { name, email, password } = this.state;
 		return (
-			<>
-				<header>
-					<h1>Sign Up</h1>
-				</header>
-
-				<form onSubmit={this.handleFormSubmission}>
-					<div className='mb-3'>
-						<label htmlFor='name-input' className='form-label'>
-							Name
-						</label>
-						<input
-							className='form-control'
-							type='text'
-							id='name-input'
-							aria-describedby='name'
-							name='name'
-							required
-							value={this.state.name}
-							onChange={this.handleInputChange}
-						/>
-					</div>
-
-					<div className='row g-3'>
-						<div className='col-md-6 mb-3'>
-							<label htmlFor='email-input' className='form-label'>
-								Email
-							</label>
-							<input
-								className='form-control'
-								type='email'
-								id='email-input'
-								aria-describedby='email'
-								name='email'
-								required
-								value={this.state.email}
-								onChange={this.handleInputChange}
-							/>
+			<section className='d-flex justify-content-center align-items-center'>
+				<div className='card form-card bg-light'>
+					<div className='row g-0'>
+						<div className='col-md-7 card-content p-5'>
+							<div className='card-body'>
+								<h1 className='card-title text-center mb-5'>Sign Up</h1>
+								<form onSubmit={this.handleFormSubmission}>
+									<div className='row g-3'>
+										{/* Name */}
+										<div>
+											<label htmlFor='name-input' className='form-label'>
+												Name
+											</label>
+											<input
+												className='form-control'
+												type='name'
+												id='name-input'
+												aria-describedby='name'
+												name='name'
+												required
+												value={name}
+												onChange={this.handleInputChange}
+											/>
+										</div>
+										{/* Email */}
+										<div>
+											<label htmlFor='email-input' className='form-label'>
+												Email address
+											</label>
+											<input
+												className='form-control'
+												type='email'
+												id='email-input'
+												aria-describedby='email'
+												name='email'
+												required
+												value={email}
+												onChange={this.handleInputChange}
+											/>
+										</div>
+										{/* Password */}
+										<div className='mb-2'>
+											<label htmlFor='password-input' className='form-label'>
+												Password
+											</label>
+											<input
+												className='form-control'
+												id='password-input'
+												type='password'
+												name='password'
+												required
+												value={password}
+												onChange={this.handleInputChange}
+											/>
+										</div>
+										<div className='d-grid mb-5'>
+											<button className='btn btn-secondary' type='submit'>
+												Sign In
+											</button>
+										</div>
+										<p className='card-text text-center'>
+											<small className='text-muted d-block'>
+												Don't have an account?
+												<Link to='/sign-up'> Create one</Link>
+											</small>
+										</p>
+									</div>
+								</form>
+							</div>
 						</div>
-
-						<div className='col-md-6 mb-3'>
-							<label htmlFor='password-input' className='form-label'>
-								Password
-							</label>
-							<input
-								className='form-control'
-								id='password-input'
-								type='password'
-								name='password'
-								required
-								value={this.state.password}
-								onChange={this.handleInputChange}
-							/>
+						<div className='col-md-5 card-image-col d-flex justify-content-center align-items-center'>
+							<img
+								className='img-fluid'
+								src='https://www.mswipe.com/assets/images/signin_marchant_mswipe_Illustrations.svg'
+								alt='signin'></img>
 						</div>
 					</div>
-
-					<div className='custom-file mb-4'>
-						<label className='custom-file-label' for='customFile'>
-							Choose a Profile Picture
-						</label>
-						<input
-							type='file'
-							className='custom-file-input'
-							id='input-picture'
-							name='profilePicture'
-							onChange={this.handleFileInputChange}
-						/>
-					</div>
-
-					<div className='d-grid'>
-						<button className='btn btn-primary' type='submit'>
-							Sign Up
-						</button>
-					</div>
-				</form>
-			</>
+				</div>
+			</section>
 		);
 	}
 }
