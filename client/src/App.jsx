@@ -5,8 +5,10 @@ import { signOut, verify } from './services/authentication';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
-import CreateResource from './views/resource/CreateResource';
 import CreateProject from './views/project/CreateProject';
+
+import CreateResource from './views/resource/CreateResource';
+import SingleResource from './views/resource/SingleResource';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -15,8 +17,7 @@ import ErrorPage from './views/ErrorPage';
 import Profile from './views/profile/Profile';
 import EditProfile from './views/profile/EditProfile';
 import Navbar from './components/Navbar';
-import CreateResource from './views/resource/CreateResource';
-import SingleResource from './views/resource/SingleResource';
+// import CreateResource from './views/resource/CreateResource';
 
 export class App extends Component {
   state = {
@@ -53,18 +54,27 @@ export class App extends Component {
             {this.state.loaded && (
               <Switch>
                 <Route path="/" component={Home} exact />
-                <Route
-                  path="/resource/create"
-                  component={CreateResource}
-                  redirect="/resource/:id"
-                  exact
-                />
+
                 <Route
                   path="/project/create"
                   component={CreateProject}
                   redirect="/project/:id"
                   exact
                 />
+                <Route
+                  path="/resource/create"
+                  component={CreateResource}
+                  redirect="/resource/:id"
+                  exact
+                />
+
+                <Route
+                  path="/resource/:id"
+                  component={SingleResource}
+                  redirect="/resource/:id"
+                  exact
+                />
+
                 <ProtectedRoute
                   path="/sign-in"
                   render={(props) => (
