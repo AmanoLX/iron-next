@@ -8,7 +8,7 @@ export const createResource = async (data) => {
 export const getSingleResource = async (id) => {
   const response = await api.get(`/resource/${id}`);
   const resource = response.data.resource;
-  return resource;
+  return { resource };
   // const application = response.data.application;
   // return { pet, application };
 };

@@ -71,7 +71,7 @@ export class App extends Component {
                 <Route
                   path="/resource/:id"
                   component={SingleResource}
-                  redirect="/resource/:id"
+                  //redirect="/resource/:id"
                   exact
                 />
 

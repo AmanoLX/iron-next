@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getSingleResource } from './../../services/resource';
+import { Link } from 'react-router-dom';
 
 class SingleResource extends Component {
   state = {
@@ -15,7 +16,20 @@ class SingleResource extends Component {
     const resource = this.state.resource;
     return (
       <div>
-        <h1>Test - Single Resource</h1>
+        {resource && (
+          <div>
+            <h1>{resource.title}</h1>
+            <h2>{resource.url}</h2>
+            <span>
+              {resource.type} {resource.description}{' '}
+            </span>
+            <br />
+            <span>
+              Shared by {resource.creator}
+              {/* // on {resource.timestamps.createdAt} */}
+            </span>
+          </div>
+        )}
       </div>
     );
   }
