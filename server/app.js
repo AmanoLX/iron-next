@@ -12,6 +12,7 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const projectRouter = require('./routes/project');
 const resourceRouter = require('./routes/resource');
 const cors = require('cors');
 
@@ -51,6 +52,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/project', projectRouter);
 app.use('/resource', resourceRouter);
 
 // Catch missing routes and forward to error handler

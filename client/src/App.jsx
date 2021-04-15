@@ -6,6 +6,7 @@ import { signOut, verify } from './services/authentication';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import CreateResource from './views/resource/CreateResource';
+import CreateProject from './views/project/CreateProject';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -42,7 +43,7 @@ export class App extends Component {
 	render() {
 		const user = this.state.user;
 		return (
-			<>
+			<div>
 				<Navbar user={user} onSignOut={this.handleSignOut} />
 
 				<main>
@@ -54,6 +55,12 @@ export class App extends Component {
 									path='/resource/create'
 									component={CreateResource}
 									redirect='/resource/:id'
+									exact
+								/>
+								<Route
+									path='/project/create'
+									component={CreateProject}
+									redirect='/project/:id'
 									exact
 								/>
 								<ProtectedRoute
@@ -103,7 +110,7 @@ export class App extends Component {
 						)}
 					</div>
 				</main>
-			</>
+			</div>
 		);
 	}
 }
