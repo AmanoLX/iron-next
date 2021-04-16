@@ -17,7 +17,7 @@ const projectSchema = new mongoose.Schema({
     required: true
   },
   skillsNeeded: {
-    type: String,
+    type: [String],
     enum: [
       'User Research',
       'Wireframes/Prototyping',

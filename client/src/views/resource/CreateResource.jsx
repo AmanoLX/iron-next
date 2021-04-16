@@ -33,7 +33,7 @@ class CreateResource extends Component {
 				label: 'Course',
 			},
 		],
-		type: '',
+		type: [],
 		description: '',
 		creator: '',
 	};
@@ -80,12 +80,11 @@ class CreateResource extends Component {
 		});
 	};
 
-	// handleCheckboxInputChange = event => {
-	// 	const { name, checked } = event.target;
-	// 	this.setState({
-	// 		[name]: checked,
-	// 	});
-	// };
+	handleCheckboxGroupChange = (name, values) => {
+		this.setState({
+			[name]: values,
+		});
+	};
 
 	render() {
 		const { topic, title, url, possibleTypes, type, description } = this.state;
@@ -168,7 +167,7 @@ class CreateResource extends Component {
 												options={possibleTypes}
 												values={type}
 												onUpdate={values =>
-													this.handleCheckboxGroupChange('skillsNeeded', values)
+													this.handleCheckboxGroupChange('type', values)
 												}
 											/>
 										</div>
