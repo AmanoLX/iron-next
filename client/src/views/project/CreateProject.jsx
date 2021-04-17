@@ -5,10 +5,9 @@ class CreateProject extends Component {
   state = {
     title: '',
     description: '',
-    roleNeeded: [],
-    skillsNeeded: [],
-    projectCreator: '',
-    projectStatus: []
+    roleNeeded: '',
+    skillsNeeded: '',
+    projectStatus: ''
   };
 
   handleFormSubmission = async (event) => {
@@ -18,7 +17,6 @@ class CreateProject extends Component {
       description,
       roleNeeded,
       skillsNeeded,
-      projectCreator,
       projectStatus
     } = this.state;
     const data = {
@@ -26,7 +24,6 @@ class CreateProject extends Component {
       description,
       roleNeeded,
       skillsNeeded,
-      projectCreator,
       projectStatus
     };
     /*
