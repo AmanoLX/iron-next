@@ -26,8 +26,12 @@ class SingleResource extends Component {
               {resource.type} {resource.description}{' '}
             </span>
             <br />
-            <span>Shared by {resource.creator}</span>
-            <button>Edit</button>
+            <span>Shared by {resource.creator.name}</span>
+            {this.props.user && this.props.user._id === resource.creator._id && (
+              <>
+                <button>Edit</button> <button>Delete</button>
+              </>
+            )}
           </div>
         )}
       </div>

@@ -72,13 +72,20 @@ export class App extends Component {
                 <Route
                   path="/resource/list"
                   component={ResourcesList}
-                  //redirect="/resource/:id"
+                  redirect="/resource/:id"
                   exact
                 />
 
                 <Route
                   path="/resource/:id"
                   component={SingleResource}
+                  render={(props) => (
+                    <SingleResource
+                      {...props}
+                      user={this.state.user}
+                      //onUserChange={this.handleUserChange}
+                    />
+                  )}
                   //redirect="/resource/:id"
                   exact
                 />
