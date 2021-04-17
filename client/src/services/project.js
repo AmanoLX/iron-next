@@ -6,8 +6,8 @@ export const createProject = async data => {
 };
 
 // export const listProjects = async () => {
-//   const response = await api.get('/project/list');
-//   return response.data.projects;
+// 	const response = await api.get('/project/list');
+// 	return response.data.projects;
 // };
 
 // export const loadProject = async id => {

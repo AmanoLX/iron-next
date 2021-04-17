@@ -27,6 +27,11 @@ img {
 	display: block;
 }
 
+/* Main */
+main {
+	margin-top: 80px;
+}
+
 /* Navbar */
 nav.navbar {
 	min-height: 80px;
@@ -48,7 +53,7 @@ section {
 
 /* Inputs */
 
-input.form-control,
+/* input.form-control,
 form .btn {
 	border-radius: 100px !important;
-}
+} */

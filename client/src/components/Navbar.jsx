@@ -5,7 +5,7 @@ import './Navbar.css';
 const Navbar = ({ user, onSignOut }) => {
 	return (
 		<>
-			<nav className='navbar navbar-expand-lg navbar-light bg-light'>
+			<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
 				<div className='container-fluid'>
 					<Link className='navbar-brand' to='/'>
 						Iron-next
@@ -36,7 +36,7 @@ const Navbar = ({ user, onSignOut }) => {
 									className='dropdown-menu'
 									aria-labelledby='navbarDropdownMenuLink'>
 									<li>
-										<Link className='dropdown-item' to='projects'>
+										<Link className='dropdown-item' to='/project/list'>
 											All Projects
 										</Link>
 									</li>
@@ -45,12 +45,6 @@ const Navbar = ({ user, onSignOut }) => {
 											<li>
 												<Link className='dropdown-item' to='/project/create'>
 													Create Project
-												</Link>
-											</li>
-
-											<li>
-												<Link className='dropdown-item' to='project/edit'>
-													Edit Project
 												</Link>
 											</li>
 										</>
@@ -71,7 +65,7 @@ const Navbar = ({ user, onSignOut }) => {
 									className='dropdown-menu'
 									aria-labelledby='navbarDropdownMenuLink'>
 									<li>
-										<Link className='dropdown-item' to='resources'>
+										<Link className='dropdown-item' to='resource/list'>
 											All Resources
 										</Link>
 									</li>
@@ -82,12 +76,6 @@ const Navbar = ({ user, onSignOut }) => {
 													Create Resource
 												</Link>
 											</li>
-
-											<li>
-												<Link className='dropdown-item' to='project/edit'>
-													Edit Resourse
-												</Link>
-											</li>
 										</>
 									)}
 								</ul>
@@ -96,8 +84,8 @@ const Navbar = ({ user, onSignOut }) => {
 						{(user && (
 							<ul className='navbar-nav w-100 d-flex text-dark justify-content-end'>
 								<div className='d-flex flex-row align-items-center'>
-									<li className='nav-item mr-2'>Welcome {user.name}</li>
-									<li className='nav-item mr-2'>
+									<li className='nav-item'>Welcome {user.name}</li>
+									<li className='nav-item'>
 										<img
 											src={user.profilePicture}
 											alt={user.name}
@@ -105,7 +93,7 @@ const Navbar = ({ user, onSignOut }) => {
 									</li>
 									<li className='nav-item'>
 										<Link className='nav-link' to='/profile'>
-											<button className='btn btn-secondary mr-2'>
+											<button className='btn btn-secondary me-2'>
 												Profile
 											</button>
 										</Link>
@@ -122,10 +110,10 @@ const Navbar = ({ user, onSignOut }) => {
 								</div>
 							</ul>
 						)) || (
-							<ul className='navbar-nav ml-auto '>
+							<ul className='navbar-nav w-100 d-flex justify-content-end'>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-in'>
-										<button className='btn btn-secondary mr-2'>Sign In</button>
+										<button className='btn btn-secondary'>Sign In</button>
 									</Link>
 								</li>
 								<li className='nav-item'>

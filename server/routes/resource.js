@@ -10,6 +10,7 @@ router.post('/create', async (req, res, next) => {
     title,
     url,
     type,
+    video,
     description
     // creator,
     // timestamps
@@ -21,6 +22,7 @@ router.post('/create', async (req, res, next) => {
       title,
       url,
       type,
+      video,
       description,
       creator: req.user._id
     });
