@@ -31,10 +31,22 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
+router.get('/list', async (req, res, next) => {
+  try {
+    const resources = await Resource.find()
+      .sort({ addedDate: -1 })
+      .limit(10)
+      .populate('creator');
+    res.json({ resources });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const resource = await Resource.findById(req.params.id).populate({
-      path: 'user'
+      path: 'creator'
     });
     //let application = null;
     // let resource;

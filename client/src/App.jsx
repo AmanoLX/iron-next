@@ -9,6 +9,7 @@ import CreateProject from './views/project/CreateProject';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
+import ResourcesList from './views/resource/ResourcesList';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -65,6 +66,13 @@ export class App extends Component {
                   path="/resource/create"
                   component={CreateResource}
                   redirect="/resource/:id"
+                  exact
+                />
+
+                <Route
+                  path="/resource/list"
+                  component={ResourcesList}
+                  //redirect="/resource/:id"
                   exact
                 />
 

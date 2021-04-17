@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 class SingleResource extends Component {
   state = {
-    resource: null
+    resource: null,
+    time: null
   };
 
   async componentDidMount() {
@@ -14,6 +15,7 @@ class SingleResource extends Component {
 
   render() {
     const resource = this.state.resource;
+
     return (
       <div>
         {resource && (
@@ -24,10 +26,8 @@ class SingleResource extends Component {
               {resource.type} {resource.description}{' '}
             </span>
             <br />
-            <span>
-              Shared by {resource.creator}
-              {/* // on {resource.timestamps.createdAt} */}
-            </span>
+            <span>Shared by {resource.creator}</span>
+            <button>Edit</button>
           </div>
         )}
       </div>
