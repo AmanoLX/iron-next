@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getSingleResource } from './../../services/resource';
-import { Link } from 'react-router-dom';
 
 class SingleResource extends Component {
   state = {

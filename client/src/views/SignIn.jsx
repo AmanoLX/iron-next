@@ -31,7 +31,7 @@ class SignIn extends Component {
 					<div className='row g-0'>
 						<div className='col-md-5 card-image-col d-flex justify-content-center align-items-center'>
 							<img
-								class='img-fluid'
+								className='img-fluid'
 								src='https://www.mswipe.com/assets/images/signin_marchant_mswipe_Illustrations.svg'
 								alt='signin'></img>
 						</div>

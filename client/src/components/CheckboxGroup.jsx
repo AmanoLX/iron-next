@@ -9,17 +9,20 @@ const CheckboxGroup = ({ options, values, onUpdate }) => {
 	};
 
 	return (
-		<div className='input--checkbox-group'>
+		<div>
 			{options.map(option => (
-				<div>
-					<input
-						id={`input-checkbox-${option.value}`}
-						type='checkbox'
-						name={option.value}
-						checked={values.includes(option.value)}
-						onChange={handleCheckboxChange}
-					/>
-					<label htmlFor={`input-checkbox-${option.value}`}>
+				<div className='form-check form-check-inline'>
+					<label
+						className='form-check-label d-flex align-items-center mb-2 mr-3'
+						htmlFor={`input-checkbox-${option.value}`}>
+						<input
+							className='form-check-input me-1'
+							id={`input-checkbox-${option.value}`}
+							type='checkbox'
+							name={option.value}
+							checked={values.includes(option.value)}
+							onChange={handleCheckboxChange}
+						/>
 						{option.label}
 					</label>
 				</div>

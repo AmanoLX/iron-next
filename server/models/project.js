@@ -17,12 +17,12 @@ const projectSchema = new mongoose.Schema({
     required: true
   },
   skillsNeeded: {
-    type: String,
+    type: [String],
     enum: [
       'User Research',
       'Wireframes/Prototyping',
-      'Interface Design',
-      'Vanilla Javascript',
+      'UI/UX Design',
+      'Javascript',
       'HTML/CSS',
       'React JS',
       'Node JS'
@@ -35,7 +35,7 @@ const projectSchema = new mongoose.Schema({
   },
   projectStatus: {
     type: String,
-    enum: ['Not started yet', 'In progress', 'Completed'],
+    enum: ['Not started yet', 'In progress', 'Finishing', 'Completed'],
     required: true
   },
   timestamps: {

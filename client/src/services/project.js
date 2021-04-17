@@ -1,8 +1,8 @@
 import api from './api';
 
 export const createProject = async data => {
-  const response = await api.post('/project/create', data);
-  return response.data.project;
+	const response = await api.post('/project/create', data);
+	return response.data.project;
 };
 
 // export const listProjects = async () => {
