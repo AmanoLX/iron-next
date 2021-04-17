@@ -12,6 +12,7 @@ import ProjectList from './views/project/ProjectList';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
+import ResourcesList from './views/resource/ResourcesList';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -86,8 +87,22 @@ export class App extends Component {
                 />
 
                 <Route
+                  path="/resource/list"
+                  component={ResourcesList}
+                  redirect="/resource/:id"
+                  exact
+                />
+
+                <Route
                   path="/resource/:id"
                   component={SingleResource}
+                  render={(props) => (
+                    <SingleResource
+                      {...props}
+                      user={this.state.user}
+                      //onUserChange={this.handleUserChange}
+                    />
+                  )}
                   //redirect="/resource/:id"
                   exact
                 />
