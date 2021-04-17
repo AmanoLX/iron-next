@@ -1,33 +1,34 @@
-
-
 const CheckboxGroup = ({ options, values, onUpdate }) => {
-  const handleCheckboxChange = event => {
-    const { name, checked } = event.target;
-    if (checked) {
-      onUpdate([...values, name]);
-    } else {
-      onUpdate(values.filter(value => value !== name));
-    }
-  };
+	const handleCheckboxChange = event => {
+		const { name, checked } = event.target;
+		if (checked) {
+			onUpdate([...values, name]);
+		} else {
+			onUpdate(values.filter(value => value !== name));
+		}
+	};
 
-  return (
-    <div className="input--checkbox-group">
-      {options.map(option => (
-        <div>
-          <input
-            id={`input-checkbox-${option.value}`}
-            type="checkbox"
-            name={option.value}
-            checked={values.includes(option.value)}
-            onChange={handleCheckboxChange}
-          />
-          <label htmlFor={`input-checkbox-${option.value}`}>
-            {option.label}
-          </label>
-        </div>
-      ))}
-    </div>
-  );
+	return (
+		<div>
+			{options.map(option => (
+				<div className='form-check form-check-inline'>
+					<label
+						className='form-check-label d-flex align-items-center mb-2 mr-3'
+						htmlFor={`input-checkbox-${option.value}`}>
+						<input
+							className='form-check-input me-1'
+							id={`input-checkbox-${option.value}`}
+							type='checkbox'
+							name={option.value}
+							checked={values.includes(option.value)}
+							onChange={handleCheckboxChange}
+						/>
+						{option.label}
+					</label>
+				</div>
+			))}
+		</div>
+	);
 };
 
 export default CheckboxGroup;

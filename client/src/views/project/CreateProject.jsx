@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
 import { createProject } from './../../services/project';
+import CheckboxGroup from './../../components/CheckboxGroup';
 
 class CreateProject extends Component {
   state = {
     title: '',
     description: '',
     roleNeeded: '',
-    skillsNeeded: '',
+    possibleSkillsNeeded: [
+      {
+        value: 'User Research',
+        label: 'User Research'
+      },
+      {
+        value: 'Wireframes/Prototyping',
+        label: 'Wireframes/Prototyping'
+      },
+      {
+        value: 'UI/UX Design',
+        label: 'UI/UX Design'
+      },
+      {
+        value: 'HTML/CSS',
+        label: 'HTML/CSS'
+      },
+      {
+        value: 'Javascript',
+        label: 'Javascript'
+      },
+      {
+        value: 'Node JS',
+        label: 'Node JS'
+      },
+      {
+        value: 'React JS',
+        label: 'React JS'
+      }
+    ],
+    skillsNeeded: [],
     projectStatus: ''
   };
 
@@ -41,13 +72,6 @@ class CreateProject extends Component {
     console.log(body);
     */
     const project = await createProject(data);
-    // const resource = await createResource({
-    //   topic,
-    //   title,
-    //   url,
-    //   type,
-    //   description
-    // });
     this.props.history.push(`/project/${project._id}`);
   };
 
@@ -58,112 +82,141 @@ class CreateProject extends Component {
     });
   };
 
+  handleCheckboxGroupChange = (name, values) => {
+    this.setState({
+      [name]: values
+    });
+  };
+
   render() {
+    const {
+      title,
+      description,
+      roleNeeded,
+      possibleSkillsNeeded,
+      skillsNeeded,
+      projectStatus
+    } = this.state;
     return (
-      <main>
-        <header>
-          <h1>Create a project </h1>
-        </header>
+      <section className="d-flex justify-content-center align-items-center">
+        <div className="card form-card bg-light p-5 w-100">
+          <div className="row g-0">
+            <div className="card-body">
+              <div className="row d-flex align-items-center">
+                <form onSubmit={this.handleFormSubmission}>
+                  <div className="mb-3">
+                    <div className="row w-100 d-flex align-items-center ml-0">
+                      {/* Title */}
+                      <label
+                        htmlFor="input-title"
+                        className="col-md-4 col-form-label pl-0"
+                      >
+                        <h2>Project Title</h2>
+                      </label>
 
-        <form onSubmit={this.handleFormSubmission}>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="input-title">Project title</label>
-              <input
-                id="input-title"
-                name="title"
-                type="text"
-                placeholder="Title"
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                required
-              />
+                      <input
+                        className="form-control col-md-8"
+                        type="text"
+                        id="input-title"
+                        aria-describedby="title"
+                        name="title"
+                        placeholder="For example: Ironbeer 2.0 App"
+                        required
+                        value={title}
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                  </div>
 
-              <label htmlFor="input-description">Description</label>
-              <textarea
-                id="input-description"
-                name="description"
-                placeholder="Description"
-                value={this.state.description}
-                onChange={this.handleInputChange}
-              />
-            </div>
+                  {/* Status */}
+                  <div className="mb-3">
+                    <label htmlFor="input-status" className="form-label">
+                      Status of project
+                    </label>
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="input-status"
+                      name="projectStatus"
+                      value={projectStatus}
+                      onChange={this.handleInputChange}
+                      required
+                    >
+                      <option value="" disabled>
+                        Selected an option
+                      </option>
+                      <option value="Not started yet">Not started yet</option>
+                      <option value="In progress">In Progress</option>
+                      <option value="Finishing">End Stage</option>
+                    </select>
+                  </div>
 
-            <div className="col">
-              <label htmlFor="input-roles">Role Needed</label>
-              <select
-                id="input-roles"
-                name="roleNeeded"
-                value={this.state.roleNeeded}
-                onChange={this.handleInputChange}
-                required
-              >
-                <option value="" disabled>
-                  Roles Needed
-                </option>
-                <option value="ux-ui-designer">UX/UI Graduate</option>
-                <option value="webdev">WebDev Graduate</option>
-              </select>
-            </div>
+                  {/* Description */}
+                  <div className="mb-3">
+                    <label htmlFor="input-description" className="form-label">
+                      Project description
+                    </label>
+                    <textarea
+                      className="form-control"
+                      rows="5"
+                      id="input-description"
+                      name="description"
+                      placeholder="Brief descripton of the project"
+                      value={description}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
 
-            <div className="col">
-              <label htmlFor="input-skills">Skills Needed</label>
-              <select
-                id="input-skills"
-                name="skillsNeeded"
-                value={this.state.skillsNeeded}
-                onChange={this.handleInputChange}
-                required
-              >
-                <option value="" disabled>
-                  Skills Needed
-                </option>
-                <option value="User Research">User Research</option>
-                <option value="Wireframes/Prototyping">
-                  Wireframes/Prototyping
-                </option>
-                <option value="Interface Design">Interface Design</option>
-                <option value="html-css">HTML/CSS</option>
-                <option value="Vanilla Javascript">Vanilla Javascript</option>
-                <option value="HTML/CSS">HTML/CSS</option>
-                <option value="React JS">React JS</option>
-                <option value="Node JS">NodeJS</option>
-              </select>
+                  {/* Roles */}
+                  <div className="mb-3">
+                    <label htmlFor="input-roles" className="form-label">
+                      Roles Needed
+                    </label>
+                    <select
+                      className="form-select"
+                      aria-label="Default select example"
+                      id="input-roles"
+                      name="roleNeeded"
+                      value={roleNeeded}
+                      onChange={this.handleInputChange}
+                      required
+                    >
+                      <option value="" disabled>
+                        Roles Needed
+                      </option>
+                      <option value="UX/UI Graduate">UX/UI Graduate</option>
+                      <option value="WebDev Graduate">WebDev Graduate</option>
+                    </select>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="mb-3 d-flex flex-column">
+                    <label htmlFor="input-roles" className="form-label">
+                      Skills Needed
+                    </label>
+                    <div className="d-flex">
+                      <CheckboxGroup
+                        options={possibleSkillsNeeded}
+                        values={skillsNeeded}
+                        onUpdate={(values) =>
+                          this.handleCheckboxGroupChange('skillsNeeded', values)
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  {/* Create Btn */}
+                  <div className="d-grid">
+                    <button className="btn btn-secondary">
+                      Create Project
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-
-          <div className="row">
-            {/* <div className="col">
-                  <label htmlFor="input-creator">Project Creator</label>
-                  <input
-                    id="input-creator"
-                    name="projectCreator"
-                    type="text"
-                    placeholder="Project Creator"
-                    value={this.state.projectCreator}
-                    onChange={this.handleInputChange}
-                  />
-                </div> */}
-            <div className="col">
-              <label htmlFor="input-status">Project Status</label>
-              <select
-                id="input-status"
-                name="projectStatus"
-                value={this.state.projectStatus}
-                onChange={this.handleInputChange}
-              >
-                <option value="" disabled>
-                  status
-                </option>
-                <option value="Not started yet">Not Started Yet</option>
-                <option value="In progress">In Progress</option>
-                <option value="Completed">Completed</option>
-              </select>
-            </div>
-          </div>
-          <button>Create Project</button>
-        </form>
-      </main>
+        </div>
+      </section>
     );
   }
 }

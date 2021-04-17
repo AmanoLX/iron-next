@@ -8,6 +8,7 @@ const Project = require('./../models/project');
 
 const router = new express.Router();
 
+// Create project
 router.post('/create', async (req, res, next) => {
   const {
     title,
@@ -15,8 +16,11 @@ router.post('/create', async (req, res, next) => {
     roleNeeded,
     skillsNeeded,
     projectStatus
+    // creator,
+    // timestamps
   } = req.body;
   try {
+    console.log(req.body);
     const project = await Project.create({
       title,
       description,
@@ -31,46 +35,62 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
-// router.get('/list', async (req, res, next) => {
-//   try {
-//     const projects = await Project.find().sort({ addedDate: -1 }).limit(20);
-//     res.json({ projects });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.get('/list', async (req, res, next) => {
+  try {
+    const projects = await Project.find().sort({ addedDate: -1 }).limit(20);
+    res.json({ projects });
+  } catch (error) {
+    next(error);
+  }
+});
 
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const project = await Project.findById(req.params.id).populate(
-//       'user',
-//       'name'
-//     );
-//     let application = null;
-//     if (req.user) {
-//       application = await Application.findOne({
-//         project: req.params.id,
-//         user: req.user._id
-//       });
-//     }
-//     res.json({ project, application });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+// Single project
+router.get('/:id', async (req, res, next) => {
+  try {
+    const project = await Project.findById(req.params.id).populate({
+      path: 'user'
+    });
+    // let application = null;
+    // if (req.user) {
+    //   application = await Application.findOne({
+    //     project: req.params.id,
+    //     user: req.user._id
+    //   });
+    // }
+    res.json({ project });
+  } catch (error) {
+    next(error);
+  }
+});
 
-// router.patch('/:id', async (req, res, next) => {
-//   // ...
-// });
+// Project list
 
-// router.delete('/:id', routeGuard, async (req, res, next) => {
-//   try {
-//     await Project.findByIdAndDelete(req.params.id);
-//     res.json({});
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+//Edit single project
+router.patch('/:id', async (req, res, next) => {
+  try {
+    const project = await Project.findByIdAndUpdate(
+      req.paramas.id,
+      { Title: req.body.title },
+      { Description: req.body.description },
+      { RoleNeeded: req.body.roleNeeded },
+      { SkillsNeeded: req.body.skillsNeeded },
+      { ProjectStatus: req.body.projectStatus }
+    );
+    res.json({ project });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Delete single project
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Project.findByIdAndDelete(req.params.id);
+    res.json({});
+  } catch (error) {
+    next(error);
+  }
+});
 
 // router.post('/:id/participate', routeGuard, async (req, res, next) => {
 //     try {
