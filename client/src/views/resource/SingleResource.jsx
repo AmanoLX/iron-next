@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
   getSingleResource,
-  deleteSingleResource
+  deleteSingleResource,
+  editSingleResource
 } from './../../services/resource';
 // import { editSingleResource } from './../../services/resource';
 // import { deleteSingleResource } from './../../services/resource';
@@ -21,9 +22,14 @@ class SingleResource extends Component {
     this.setState({ resource });
   }
 
-  handleDelete = async () => {
-    await deleteSingleResource(this.props.match.params.id);
+  handleDelete = async (id) => {
+    await deleteSingleResource(id);
   };
+
+  //   handleEdit = async (id) => {
+  //     const { resource } = await editSingleResource(this.props.match.params.id);
+  //     return resource;
+  //   };
 
   // handleFormSubmission = async event => {
   // 	event.preventDefault();
@@ -47,6 +53,11 @@ class SingleResource extends Component {
   render() {
     const resource = this.state.resource;
 
+    console.log('user:', this.props.user);
+    if (this.state.resource) {
+      console.log('resource creator:', this.state.resource.creator._id);
+    }
+
     return (
       <div>
         {resource && (
@@ -58,13 +69,26 @@ class SingleResource extends Component {
             </span>
             <br />
             <span>Shared by {resource.creator.name}</span>
-            <button className="btn btn-secondary" onClick={this.handleDelete}>
-              Delete Resource
-            </button>
 
             {this.props.user && this.props.user._id === resource.creator._id && (
               <>
-                <Link to={`/resource/${resource._id}/edit`}>Edit</Link>
+                <Link to={`/resource/${resource._id}/edit`}>
+                  {/* {' '} */}
+                  <button
+                    className="btn btn-secondary"
+                    // onClick={`/resource/${resource._id}/edit`}
+                  >
+                    Edit Resource
+                  </button>
+                </Link>
+
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => this.handleDelete(resource._id)}
+                >
+                  Delete Resource
+                </button>
+                {/* <Link to={`/resource/${id}/delete`}>Delete</Link> */}
               </>
             )}
           </div>

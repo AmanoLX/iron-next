@@ -96,7 +96,6 @@ export class App extends Component {
 
                 <Route
                   path="/resource/:id"
-                  component={SingleResource}
                   render={(props) => (
                     <SingleResource
                       {...props}
@@ -110,7 +109,6 @@ export class App extends Component {
 
                 <Route
                   path="/resource/:id/edit"
-                  component={EditSingleResource}
                   render={(props) => (
                     <EditSingleResource {...props} user={this.state.user} />
                   )}

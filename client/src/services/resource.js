@@ -19,7 +19,8 @@ export const editSingleResource = async (id, data) => {
 };
 
 export const deleteSingleResource = async (id) => {
-  await api.delete(`/resource/${id}`);
+  const response = await api.delete(`/resource/${id}/delete`);
+  return response.data;
 };
 
 export const listResources = async () => {
