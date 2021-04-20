@@ -50,12 +50,6 @@ const Navbar = ({ user, onSignOut }) => {
                           Create Project
                         </Link>
                       </li>
-
-                      <li>
-                        <Link className="dropdown-item" to="/project/edit">
-                          Edit Project
-                        </Link>
-                      </li>
                     </>
                   )}
                 </ul>
@@ -85,12 +79,6 @@ const Navbar = ({ user, onSignOut }) => {
                       <li>
                         <Link className="dropdown-item" to="/resource/create">
                           Create Resource
-                        </Link>
-                      </li>
-
-                      <li>
-                        <Link className="dropdown-item" to="project/edit">
-                          Edit Resourse
                         </Link>
                       </li>
                     </>

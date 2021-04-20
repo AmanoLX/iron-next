@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const applicationSchema = new mongoose.Schema(
+const participationSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,4 +23,4 @@ const applicationSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Application', applicationSchema);
+module.exports = mongoose.model('Participation', participationSchema);

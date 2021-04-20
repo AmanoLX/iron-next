@@ -8,7 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CreateProject from './views/project/CreateProject';
 import SingleProject from './views/project/SingleProject';
 import EditSingleProject from './views/project/EditSingleProject';
-import ProjectList from './views/project/ProjectList';
+import ProjectList from './views/project/ProjectsList';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
@@ -74,8 +74,11 @@ export class App extends Component {
                 />
                 <Route
                   path="/project/:id"
-                  component={SingleProject}
+                  // component={SingleProject}
                   // redirect="/project/:id"
+                  render={(props) => (
+                    <SingleProject {...props} user={this.state.user} />
+                  )}
                   exact
                 />
 
