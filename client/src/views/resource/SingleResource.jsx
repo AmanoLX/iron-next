@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { getSingleResource } from './../../services/resource';
+import {
+	getSingleResource,
+	deleteSingleResource,
+} from './../../services/resource';
 import ResourceTypeBtn from './../../components/ResourceTypeBtn';
 import './SingleResource.css';
 
@@ -14,6 +18,10 @@ class SingleResource extends Component {
 		const { resource } = await getSingleResource(this.props.match.params.id);
 		this.setState({ resource });
 	}
+
+	handleDelete = async id => {
+		await deleteSingleResource(id);
+	};
 
 	render() {
 		const resource = this.state.resource;
@@ -94,24 +102,36 @@ class SingleResource extends Component {
 								</div>
 
 								{/* Contact Btn's */}
-								<div className='mb-3 text-center'>
-									<button type='button' className='btn btn-secondary me-2'>
-										Profile
-									</button>
-									<button type='button' className='btn btn-outline-secondary'>
-										Message
-									</button>
-								</div>
+								{this.props.user._id !== resource.creator._id && (
+									<div className='mb-3 text-center'>
+										<button type='button' className='btn btn-secondary me-2'>
+											Profile
+										</button>
+										<button type='button' className='btn btn-outline-secondary'>
+											Message
+										</button>
+									</div>
+								)}
 
 								{/* Edit & Delete Btn's */}
-								<div className='mb-3 text-center'>
-									<button type='button' className='btn btn-secondary me-2'>
-										Edit
-									</button>
-									<button type='button' className='btn btn-outline-secondary'>
-										Delete
-									</button>
-								</div>
+								{this.props.user &&
+									this.props.user._id === resource.creator._id && (
+										<div className='mb-3 text-center'>
+											<Link to={`/resource/${resource._id}/edit`}>
+												<button
+													type='button'
+													className='btn btn-secondary me-2'>
+													Edit Resource
+												</button>
+											</Link>
+
+											<button
+												className='btn btn-secondary'
+												onClick={() => this.handleDelete(resource._id)}>
+												Delete Resource
+											</button>
+										</div>
+									)}
 							</div>
 						</div>
 					)}
@@ -119,30 +139,6 @@ class SingleResource extends Component {
 			</section>
 		);
 	}
-	// render() {
-	//   const resource = this.state.resource;
-
-	//   return (
-	//     <div>
-	//       {resource && (
-	//         <div>
-	//           <h1>{resource.title}</h1>
-	//           <h2>{resource.url}</h2>
-	//           <span>
-	//             {resource.type} {resource.description}{' '}
-	//           </span>
-	//           <br />
-	//           <span>Shared by {resource.creator.name}</span>
-	//           {this.props.user && this.props.user._id === resource.creator._id && (
-	//             <>
-	//               <button>Edit</button> <button>Delete</button>
-	//             </>
-	//           )}
-	//         </div>
-	//       )}
-	//     </div>
-	//   );
-	// }
 }
 
 export default SingleResource;

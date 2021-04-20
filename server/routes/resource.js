@@ -37,7 +37,7 @@ router.get('/list', async (req, res, next) => {
   try {
     const resources = await Resource.find()
       .sort({ addedDate: -1 })
-      .limit(10)
+      .limit(5)
       .populate('creator');
     res.json({ resources });
   } catch (error) {
@@ -58,6 +58,26 @@ router.get('/:id', async (req, res, next) => {
     //       individual: req.user._id
     //     });
     //   }
+    res.json({ resource: resource });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete('/:id/delete', async (req, res, next) => {
+  try {
+    const resource = await Resource.findByIdAndDelete(req.params.id);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+router.patch('/:id/edit', async (req, res, next) => {
+  try {
+    const resource = await Resource.findById(req.params.id).populate({
+      path: 'creator'
+    });
     res.json({ resource: resource });
   } catch (error) {
     next(error);

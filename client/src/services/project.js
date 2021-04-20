@@ -13,8 +13,8 @@ export const listProjects = async () => {
 export const loadProject = async id => {
 	const response = await api.get(`/project/${id}`);
 	const project = response.data.project;
-	const application = response.data.application;
-	return { project, application };
+	const participation = response.data.participation;
+	return { project, participation };
 };
 
 export const editProject = async (id, data) => {
@@ -22,11 +22,11 @@ export const editProject = async (id, data) => {
 	return response.data.project;
 };
 
-// export const deleteProject = async id => {
-//   await api.delete(`/project/${id}`);
-// };
+export const deleteProject = async id => {
+	await api.delete(`/project/${id}`);
+};
 
-// export const participateInProject = async id => {
-//   const response = await api.post(`/project/${id}/participate`);
-//   return response.data.application;
-// };
+export const participateInProject = async id => {
+	const response = await api.post(`/project/${id}/participation`);
+	return response.data.participation;
+};

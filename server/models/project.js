@@ -29,7 +29,7 @@ const projectSchema = new mongoose.Schema({
     ],
     required: true
   },
-  projectCreator: {
+  creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },

@@ -7,11 +7,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 import CreateProject from './views/project/CreateProject';
 import SingleProject from './views/project/SingleProject';
-import ProjectList from './views/project/ProjectList';
+import EditSingleProject from './views/project/EditSingleProject';
+import ProjectList from './views/project/ProjectsList';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
 import ResourcesList from './views/resource/ResourcesList';
+import EditSingleResource from './views/resource/EditSingleResource';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -57,24 +59,12 @@ export class App extends Component {
 							<Switch>
 								<Route path='/' component={Home} exact />
 
-								<ProtectedRoute
-									path='/project/create'
-									render={props => (
-										<CreateProject
-											{...props}
-											onUserChange={this.handleUserChange}
-										/>
-									)}
-									authorized={user}
-									redirect='/project/:id'
-									exact
-								/>
-								{/* <Route
+								<Route
 									path='/project/create'
 									component={CreateProject}
 									redirect='/project/:id'
 									exact
-								/> */}
+								/>
 
 								<Route
 									path='/project/list'
@@ -84,8 +74,11 @@ export class App extends Component {
 								/>
 								<Route
 									path='/project/:id'
-									component={SingleProject}
+									// component={SingleProject}
 									// redirect="/project/:id"
+									render={props => (
+										<SingleProject {...props} user={this.state.user} />
+									)}
 									exact
 								/>
 
@@ -105,7 +98,6 @@ export class App extends Component {
 
 								<Route
 									path='/resource/:id'
-									component={SingleResource}
 									render={props => (
 										<SingleResource
 											{...props}
@@ -114,6 +106,14 @@ export class App extends Component {
 										/>
 									)}
 									//redirect="/resource/:id"
+									exact
+								/>
+
+								<Route
+									path='/resource/:id/edit'
+									render={props => (
+										<EditSingleResource {...props} user={this.state.user} />
+									)}
 									exact
 								/>
 

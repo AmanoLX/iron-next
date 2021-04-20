@@ -1,55 +1,67 @@
 import React, { Component } from 'react';
-import { loadProject } from './../../services/project';
-//import './SingleProject.scss';
+import { loadProject, participateInProject } from './../../services/project';
 
 class SingleProject extends Component {
-	state = {
-		project: null,
-        //application : null 
-	};
+  state = {
+    project: null,
+    participation: null
+  };
 
-	async componentDidMount() {
-		const { project } = await loadProject(this.props.match.params.id);
-		this.setState({ project });
-	}
+  async componentDidMount() {
+    const { project } = await loadProject(this.props.match.params.id);
+    this.setState({ project });
+  }
 
-//   handleParticipationApplication = async () => {
-//     const application = await participateInProject(this.props.match.params.id);
-//     this.setState({ application });
-//   };
+  handleParticipation = async () => {
+    const participation = await participateInProject(
+      this.props.match.params.id
+    );
+    this.setState({ participation });
+  };
 
-	render() {
-		const project = this.state.project;
-		return (
-			<div>
-				{project && (
-					<div>
-						<h1>{project.title}</h1>
-						<h2>{project.projectStatus}</h2>
-						<span>
-							{project.description}
-						</span>
-						<br />
-						<span>
-							{project.roleNeeded} {project.skillsNeeded}
-						</span>
-                        <br />
-                        {/* <button
-//               className="button"
-//               disabled={this.state.application}
-//               onClick={this.handleParticipationApplication}
-//             >
-//               {(this.state.application && 'You are now working on this project!') || 'Participate in this project'}
-//             </button> */}
-                </div>
-				)}
-			</div>
-		);
-	}
+  render() {
+    const project = this.state.project;
+    console.log('user:', this.props.user);
+    if (this.state.project) {
+      console.log('project creator:', this.state.project);
+    }
+
+    return (
+      <div>
+        {project && (
+          <div>
+            <h1>{project.title}</h1>
+            <h2>{project.projectStatus}</h2>
+            <span>{project.description}</span>
+            <br />
+            <span>
+              {project.roleNeeded} {project.skillsNeeded}
+            </span>
+            <br />
+
+            <small>Shared by {project.creator && project.creator.name}</small>
+            {this.props.user &&
+              this.props.user._id === project.creator._id &&
+              ((
+                <>
+                  <button>Edit</button> <button>Delete</button>
+                </>
+              ) || (
+                <button
+                  className="button"
+                  //   disabled={this.state.participation}
+                  onClick={this.handleParticipation}
+                >
+                  {(this.state.participation &&
+                    'You are participating on this project!') ||
+                    'Participate in this project'}
+                </button>
+              ))}
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default SingleProject;
-
-
-
-

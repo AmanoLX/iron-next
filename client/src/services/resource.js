@@ -14,12 +14,13 @@ export const getSingleResource = async (id) => {
 };
 
 export const editSingleResource = async (id, data) => {
-  const response = await api.patch(`/resource/${id}`, data);
+  const response = await api.patch(`/resource/${id}/edit`, data);
   return response.data.resource;
 };
 
 export const deleteSingleResource = async (id) => {
-  await api.delete(`/resource/${id}`);
+  const response = await api.delete(`/resource/${id}/delete`);
+  return response.data;
 };
 
 export const listResources = async () => {
