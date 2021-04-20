@@ -13,6 +13,7 @@ import ProjectList from './views/project/ProjectsList';
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
 import ResourcesList from './views/resource/ResourcesList';
+import EditSingleResource from './views/resource/EditSingleResource';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -98,7 +99,6 @@ export class App extends Component {
 
                 <Route
                   path="/resource/:id"
-                  component={SingleResource}
                   render={(props) => (
                     <SingleResource
                       {...props}
@@ -107,6 +107,14 @@ export class App extends Component {
                     />
                   )}
                   //redirect="/resource/:id"
+                  exact
+                />
+
+                <Route
+                  path="/resource/:id/edit"
+                  render={(props) => (
+                    <EditSingleResource {...props} user={this.state.user} />
+                  )}
                   exact
                 />
 
