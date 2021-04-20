@@ -62,4 +62,15 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+// router.patch('/:id/edit', routeGuard, async (req, res, next) => {
+//   try {
+//     const resource = await Resource.findById(req.params.id).populate({
+//       path: 'creator'
+//     });
+//     res.json({ resource: resource });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
 module.exports = router;

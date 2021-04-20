@@ -13,6 +13,7 @@ import ProjectList from './views/project/ProjectList';
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
 import ResourcesList from './views/resource/ResourcesList';
+import EditSingleResource from './views/resource/EditSingleResource';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -104,6 +105,15 @@ export class App extends Component {
                     />
                   )}
                   //redirect="/resource/:id"
+                  exact
+                />
+
+                <Route
+                  path="/resource/:id/edit"
+                  component={EditSingleResource}
+                  render={(props) => (
+                    <EditSingleResource {...props} user={this.state.user} />
+                  )}
                   exact
                 />
 

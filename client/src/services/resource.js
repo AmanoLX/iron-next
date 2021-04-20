@@ -14,7 +14,7 @@ export const getSingleResource = async (id) => {
 };
 
 export const editSingleResource = async (id, data) => {
-  const response = await api.patch(`/resource/${id}`, data);
+  const response = await api.patch(`/resource/${id}/edit`, data);
   return response.data.resource;
 };
 
