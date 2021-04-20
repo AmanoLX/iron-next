@@ -65,7 +65,7 @@ const Navbar = ({ user, onSignOut }) => {
 									className='dropdown-menu'
 									aria-labelledby='navbarDropdownMenuLink'>
 									<li>
-										<Link className='dropdown-item' to='resource/list'>
+										<Link className='dropdown-item' to='/resource/list'>
 											All Resources
 										</Link>
 									</li>
@@ -85,15 +85,18 @@ const Navbar = ({ user, onSignOut }) => {
 							<ul className='navbar-nav w-100 d-flex text-dark justify-content-end'>
 								<div className='d-flex flex-row align-items-center'>
 									<li className='nav-item'>Welcome {user.name}</li>
-									<li className='nav-item'>
-										<img
-											src={user.profilePicture}
-											alt={user.name}
-											className='profile-picture'></img>
-									</li>
+									{user.profilePicture && (
+										<li className='nav-item'>
+											<img
+												src={user.profilePicture}
+												alt={user.name}
+												className='profile-picture'></img>
+										</li>
+									)}
+
 									<li className='nav-item'>
 										<Link className='nav-link' to='/profile'>
-											<button className='btn btn-secondary me-2'>
+											<button className='btn btn-secondary mr-2'>
 												Profile
 											</button>
 										</Link>

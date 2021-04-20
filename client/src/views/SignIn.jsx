@@ -37,7 +37,7 @@ class SignIn extends Component {
 						</div>
 						<div className='col-md-7 card-content p-5'>
 							<div className='card-body'>
-								<h1 className='card-title text-center mb-5'>Welcome back</h1>
+								<h1 className='card-title text-center mb-3'>Welcome back</h1>
 								<form onSubmit={this.handleFormSubmission}>
 									<div className='row g-3'>
 										{/* Email */}
@@ -57,7 +57,7 @@ class SignIn extends Component {
 											/>
 										</div>
 										{/* Password */}
-										<div className='mb-2'>
+										<div>
 											<label htmlFor='password-input' className='form-label'>
 												Password
 											</label>

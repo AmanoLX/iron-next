@@ -1,16 +1,30 @@
-// import { Link } from 'react-router-dom';
-// import SingleProject from './SingleProject';
+import { Component } from 'react';
+import { Link } from 'react-router-dom';
+import SingleProject from './../../components/SingleProject';
+import { listProjects } from './../../services/project';
 
-// const ProjectList = ({ projects }) => {
-//   return (
-//     <div className="project_list">
-//       {projects.map(project => (
-//         <Link key={project._id} to={`/project/${project._id}`}>
-//           <SingleProject project={project} />
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// };
+class ProjectList extends Component {
+  state = {
+    projects: []
+  };
 
-// export default ProjectList;
+  async componentDidMount() {
+    const projects = await listProjects();
+    this.setState({ projects });
+  }
+
+  render() {
+    const projects = this.state.projects;
+    return (
+      <div className="project_list">
+        {projects.map((project) => (
+          <Link key={project._id} to={`/project/${project._id}`}>
+            <SingleProject project={project} />
+          </Link>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default ProjectList;

@@ -51,7 +51,7 @@ class SignUp extends Component {
 					<div className='row g-0'>
 						<div className='col-md-7 card-content p-5'>
 							<div className='card-body'>
-								<h1 className='card-title text-center mb-5'>Sign Up</h1>
+								<h1 className='card-title text-center mb-3'>Sign Up</h1>
 								<form onSubmit={this.handleFormSubmission}>
 									<div className='row g-3'>
 										{/* Name */}
@@ -87,7 +87,7 @@ class SignUp extends Component {
 											/>
 										</div>
 										{/* Password */}
-										<div className='mb-2'>
+										<div>
 											<label htmlFor='password-input' className='form-label'>
 												Password
 											</label>
@@ -101,15 +101,30 @@ class SignUp extends Component {
 												onChange={this.handleInputChange}
 											/>
 										</div>
+
+										{/* Profile Picture */}
+										<div>
+											<label htmlFor='picture-input' className='form-label'>
+												Choose a Profile Picture
+											</label>
+											<input
+												className='form-control'
+												type='file'
+												id='picture-input'
+												name='profilePicture'
+												onChange={this.handleFileInputChange}
+											/>
+										</div>
+										{/* Sign Btn */}
 										<div className='d-grid mb-5'>
 											<button className='btn btn-secondary' type='submit'>
-												Sign In
+												Sign Up
 											</button>
 										</div>
 										<p className='card-text text-center'>
 											<small className='text-muted d-block'>
-												Don't have an account?
-												<Link to='/sign-up'> Create one</Link>
+												Already got an account?
+												<Link to='/sign-in'> Sign in</Link>
 											</small>
 										</p>
 									</div>

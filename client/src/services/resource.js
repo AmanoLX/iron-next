@@ -12,3 +12,17 @@ export const getSingleResource = async (id) => {
   // const application = response.data.application;
   // return { pet, application };
 };
+
+export const editSingleResource = async (id, data) => {
+  const response = await api.patch(`/resource/${id}`, data);
+  return response.data.resource;
+};
+
+export const deleteSingleResource = async (id) => {
+  await api.delete(`/resource/${id}`);
+};
+
+export const listResources = async () => {
+  const response = await api.get('/resource/list');
+  return response.data.resources;
+};

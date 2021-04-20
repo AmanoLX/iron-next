@@ -6,9 +6,12 @@ import { signOut, verify } from './services/authentication';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import CreateProject from './views/project/CreateProject';
+import SingleProject from './views/project/SingleProject';
+import ProjectList from './views/project/ProjectList';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
+import ResourcesList from './views/resource/ResourcesList';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -17,7 +20,6 @@ import ErrorPage from './views/ErrorPage';
 import Profile from './views/profile/Profile';
 import EditProfile from './views/profile/EditProfile';
 import Navbar from './components/Navbar';
-// import CreateResource from './views/resource/CreateResource';
 
 export class App extends Component {
 	state = {
@@ -55,12 +57,38 @@ export class App extends Component {
 							<Switch>
 								<Route path='/' component={Home} exact />
 
-								<Route
+								<ProtectedRoute
+									path='/project/create'
+									render={props => (
+										<CreateProject
+											{...props}
+											onUserChange={this.handleUserChange}
+										/>
+									)}
+									authorized={user}
+									redirect='/project/:id'
+									exact
+								/>
+								{/* <Route
 									path='/project/create'
 									component={CreateProject}
 									redirect='/project/:id'
 									exact
+								/> */}
+
+								<Route
+									path='/project/list'
+									component={ProjectList}
+									// redirect="/project/:id"
+									exact
 								/>
+								<Route
+									path='/project/:id'
+									component={SingleProject}
+									// redirect="/project/:id"
+									exact
+								/>
+
 								<Route
 									path='/resource/create'
 									component={CreateResource}
@@ -69,8 +97,22 @@ export class App extends Component {
 								/>
 
 								<Route
+									path='/resource/list'
+									component={ResourcesList}
+									redirect='/resource/:id'
+									exact
+								/>
+
+								<Route
 									path='/resource/:id'
 									component={SingleResource}
+									render={props => (
+										<SingleResource
+											{...props}
+											user={this.state.user}
+											//onUserChange={this.handleUserChange}
+										/>
+									)}
 									//redirect="/resource/:id"
 									exact
 								/>

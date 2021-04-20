@@ -105,7 +105,7 @@ class CreateResource extends Component {
 						<div className='card-body'>
 							<form onSubmit={this.handleFormSubmission}>
 								{/* Title */}
-								<div className='mb-3 row align-items-center'>
+								<div className='row align-items-center'>
 									<label
 										htmlFor='input-title'
 										className='col-md-4 col-form-label'>

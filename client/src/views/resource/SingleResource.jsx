@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import { getSingleResource } from './../../services/resource';
+import ResourceTypeBtn from './../../components/ResourceTypeBtn';
 import './SingleResource.css';
 
 class SingleResource extends Component {
 	state = {
 		resource: null,
+		time: null,
 	};
 
 	async componentDidMount() {
@@ -17,7 +19,7 @@ class SingleResource extends Component {
 		const resource = this.state.resource;
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
-				<div className='card form-card bg-light  w-100'>
+				<div className='card form-card bg-light w-100'>
 					{resource && (
 						<div className='row g-0'>
 							<div className='col-md-8 py-3 px-5'>
@@ -30,12 +32,26 @@ class SingleResource extends Component {
 										{resource.description && (
 											<div className='mb-3'>
 												<h4>Description</h4>
-												<p>
-													{resource.type} {resource.description}
-												</p>
+												<p>{resource.description}</p>
 											</div>
 										)}
-										<div className='mb-3'>
+
+										{/* Video */}
+										{resource.video && (
+											<div className='mb-3'>
+												<div className='react-player'>
+													<ReactPlayer
+														url={resource.video}
+														width='100%'
+														// height='100%'
+														// other props
+													/>
+												</div>
+											</div>
+										)}
+
+										{/* Link */}
+										<div className='mb-5'>
 											<h4>Resource link</h4>
 											<a
 												href={resource.url}
@@ -52,17 +68,8 @@ class SingleResource extends Component {
 												className='btn btn-secondary btn-lg'>
 												{resource.topic}
 											</button>
+											{resource.type && <ResourceTypeBtn resource={resource} />}
 										</div>
-
-										{/* Video */}
-										{resource.video && (
-											<div className='mb-3'>
-												<ReactPlayer
-													url={resource.video}
-													// other props
-												/>
-											</div>
-										)}
 									</div>
 								</div>
 							</div>
@@ -72,8 +79,7 @@ class SingleResource extends Component {
 								{/* Name */}
 								<div className='mb-3 text-center'>
 									<h3>
-										Shared by
-										{resource.creator}
+										Shared by {resource.creator.name}
 										{/* // on {resource.timestamps.createdAt} */}
 									</h3>
 								</div>
@@ -96,6 +102,16 @@ class SingleResource extends Component {
 										Message
 									</button>
 								</div>
+
+								{/* Edit & Delete Btn's */}
+								<div className='mb-3 text-center'>
+									<button type='button' className='btn btn-secondary me-2'>
+										Edit
+									</button>
+									<button type='button' className='btn btn-outline-secondary'>
+										Delete
+									</button>
+								</div>
 							</div>
 						</div>
 					)}
@@ -103,6 +119,30 @@ class SingleResource extends Component {
 			</section>
 		);
 	}
+	// render() {
+	//   const resource = this.state.resource;
+
+	//   return (
+	//     <div>
+	//       {resource && (
+	//         <div>
+	//           <h1>{resource.title}</h1>
+	//           <h2>{resource.url}</h2>
+	//           <span>
+	//             {resource.type} {resource.description}{' '}
+	//           </span>
+	//           <br />
+	//           <span>Shared by {resource.creator.name}</span>
+	//           {this.props.user && this.props.user._id === resource.creator._id && (
+	//             <>
+	//               <button>Edit</button> <button>Delete</button>
+	//             </>
+	//           )}
+	//         </div>
+	//       )}
+	//     </div>
+	//   );
+	// }
 }
 
 export default SingleResource;

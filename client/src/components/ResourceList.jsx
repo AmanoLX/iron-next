@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import SingleResource from './SingleResource';
+import ResourceItem from './ResourceItem';
 
 const ResourceList = ({ resources }) => {
 	return (
-		<div className='resource_list'>
+		<div className='list-group'>
 			{resources.map(resource => (
-				<Link key={resource._id} to={`/project/${resource._id}`}>
-					<SingleResource project={resource} />
+				<Link key={resource._id} to={`/resource/${resource._id}`}>
+					<ResourceItem resource={resource} />
 				</Link>
 			))}
 		</div>

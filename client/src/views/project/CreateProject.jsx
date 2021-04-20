@@ -72,13 +72,6 @@ class CreateProject extends Component {
     console.log(body);
     */
 		const project = await createProject(data);
-		// const resource = await createResource({
-		//   topic,
-		//   title,
-		//   url,
-		//   type,
-		//   description
-		// });
 		this.props.history.push(`/project/${project._id}`);
 	};
 
@@ -106,21 +99,22 @@ class CreateProject extends Component {
 		} = this.state;
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
-				<div className='card form-card bg-light py-3 px-5 w-100'>
+				<div className='card form-card bg-light p-5 w-100'>
 					<div className='row g-0'>
 						<div className='card-body'>
 							<div className='row d-flex align-items-center'>
 								<form onSubmit={this.handleFormSubmission}>
-									{/* Title */}
-									<div className='mb-3 row align-items-center'>
-										<label
-											htmlFor='input-title'
-											className='col-md-4 col-form-label'>
-											<h2>Project Title</h2>
-										</label>
-										<div className='col-md-8'>
+									<div className='mb-3'>
+										<div className='row w-100 d-flex align-items-center ml-0'>
+											{/* Title */}
+											<label
+												htmlFor='input-title'
+												className='col-md-4 col-form-label pl-0'>
+												<h2>Project Title</h2>
+											</label>
+
 											<input
-												className='form-control'
+												className='form-control col-md-8'
 												type='text'
 												id='input-title'
 												aria-describedby='title'
