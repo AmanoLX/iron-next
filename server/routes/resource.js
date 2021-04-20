@@ -73,8 +73,9 @@ router.delete('/:id/delete', async (req, res, next) => {
 
 router.patch('/:id/edit', async (req, res, next) => {
   try {
-    const resource = await Resource.findById(req.params.id).populate({
-      path: 'creator'
+    console.log('my body when I try to change', req.body);
+    const resource = await Resource.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
     });
     res.json({ resource: resource });
   } catch (error) {

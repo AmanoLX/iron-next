@@ -15,7 +15,10 @@ export const getSingleResource = async (id) => {
 
 export const editSingleResource = async (id, data) => {
   const response = await api.patch(`/resource/${id}/edit`, data);
-  return response.data.resource;
+  //   return response.data.resource;
+  const body = response.data;
+  const resource = body.resource;
+  return resource;
 };
 
 export const deleteSingleResource = async (id) => {

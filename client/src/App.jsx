@@ -110,7 +110,11 @@ export class App extends Component {
                 <Route
                   path="/resource/:id/edit"
                   render={(props) => (
-                    <EditSingleResource {...props} user={this.state.user} />
+                    <EditSingleResource
+                      {...props}
+                      user={this.state.user}
+                      resource={this.state.resource}
+                    />
                   )}
                   exact
                 />

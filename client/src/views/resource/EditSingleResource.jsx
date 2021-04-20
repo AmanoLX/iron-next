@@ -44,6 +44,7 @@ class EditSingleResource extends Component {
 
   async componentDidMount() {
     const { resource } = await getSingleResource(this.props.match.params.id);
+    console.log('RESOURCE', resource);
     this.setState({ resource });
   }
 
@@ -69,12 +70,27 @@ class EditSingleResource extends Component {
     this.props.history.push(`/resource/${resource._id}`);
   };
 
-  handleDelete = async () => {
-    await deleteSingleResource(this.props.match.params.id);
+  //   const resource = await createResource(data);
+  //   // const resource = await createResource({
+  //   //   topic,
+  //   //   title,
+  //   //   url,
+  //   //   type,
+  //   //   description
+  //   // });
+  //   this.props.history.push(`/resource/${resource._id}`);
+  // };
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   render() {
     const { topic, title, url, possibleTypes, type, description } = this.state;
+    console.log(this.props.resource);
     return (
       <section className="d-flex justify-content-center align-items-center">
         <div className="card form-card bg-light p-5 w-100">
@@ -89,7 +105,7 @@ class EditSingleResource extends Component {
                         htmlFor="input-title"
                         className="col-md-4 col-form-label pl-0"
                       >
-                        <h2>Resource Title</h2>
+                        {/* <h2>{this.props.resource.title}</h2> */}
                       </label>
 
                       <input
@@ -98,7 +114,9 @@ class EditSingleResource extends Component {
                         id="input-title"
                         aria-describedby="title"
                         name="title"
-                        placeholder="For example: Flexbox Design Patters"
+                        placeholder={
+                          this.state.resource && this.state.resource.title
+                        }
                         required
                         value={title}
                         onChange={this.handleInputChange}
@@ -117,7 +135,9 @@ class EditSingleResource extends Component {
                       id="input-url"
                       aria-describedby="url"
                       name="url"
-                      placeholder="For example: https://www.youtube.com/watch?v=vQAvjof1oe4"
+                      placeholder={
+                        this.state.resource && this.state.resource.url
+                      }
                       required
                       value={url}
                       onChange={this.handleInputChange}
@@ -178,15 +198,7 @@ class EditSingleResource extends Component {
 
                   <div className="d-grid">
                     <>
-                      <button className="btn btn-secondary">
-                        Edit Resource
-                      </button>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={this.handleDelete}
-                      >
-                        Delete Resource
-                      </button>
+                      <button className="btn btn-secondary">Save</button>
                     </>
                   </div>
                 </form>
@@ -200,3 +212,34 @@ class EditSingleResource extends Component {
 }
 
 export default EditSingleResource;
+
+// /   handleFormSubmission = (event) => {
+//     event.preventDefault();
+//     const title = this.state.newTask;
+//     if (title) {
+//       this.setState({ newTask: '' });
+//       this.props.onTaskCreate(title);
+//     }
+//   };
+
+//   handleNewTaskChange = (event) => {
+//     const value = event.target.value;
+//     this.setState({
+//       newTask: value
+//     });
+//   };
+
+//   render() {
+//     return (
+//       <form onSubmit={this.handleFormSubmission}>
+//         <input
+//           type="text"
+//           placeholder="Update new task here..."
+//           onChange={this.handleNewTaskChange}
+//           value={this.state.newTask}
+//         />
+//         <button>Edit</button>
+//       </form>
+//     );
+//   }
+// }
