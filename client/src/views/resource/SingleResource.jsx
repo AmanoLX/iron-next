@@ -32,52 +32,48 @@ class SingleResource extends Component {
 						<div className='row g-0'>
 							<div className='col-md-8 py-3 px-5'>
 								<div className='card-body'>
-									<div>
-										{/* Title */}
-										<h1 className='mb-4'>{resource.title}</h1>
+									{/* Title */}
+									<h1 className='mb-4'>{resource.title}</h1>
 
-										{/* Description */}
-										{resource.description && (
-											<div className='mb-3'>
-												<h4>Description</h4>
-												<p>{resource.description}</p>
-											</div>
-										)}
-
-										{/* Video */}
-										{resource.video && (
-											<div className='mb-3'>
-												<div className='react-player'>
-													<ReactPlayer
-														url={resource.video}
-														width='100%'
-														// height='100%'
-														// other props
-													/>
-												</div>
-											</div>
-										)}
-
-										{/* Link */}
-										<div className='mb-5'>
-											<h4>Resource link</h4>
-											<a
-												href={resource.url}
-												target='_blank'
-												rel='noopener noreferrer'>
-												{resource.url}
-											</a>
-										</div>
-
-										{/* Topic and Types */}
+									{/* Description */}
+									{resource.description && (
 										<div className='mb-3'>
-											<button
-												type='button'
-												className='btn btn-secondary btn-lg'>
-												{resource.topic}
-											</button>
-											{resource.type && <ResourceTypeBtn resource={resource} />}
+											<h4>Description</h4>
+											<p>{resource.description}</p>
 										</div>
+									)}
+
+									{/* Video */}
+									{resource.video && (
+										<div className='mb-3'>
+											<div className='react-player'>
+												<ReactPlayer
+													url={resource.video}
+													width='100%'
+													// height='100%'
+													// other props
+												/>
+											</div>
+										</div>
+									)}
+
+									{/* Link */}
+									<div className='mb-5'>
+										<h4>Resource link</h4>
+										<a
+											href={resource.url}
+											target='_blank'
+											rel='noopener noreferrer'>
+											{resource.url}
+										</a>
+									</div>
+
+									{/* Topic and Types */}
+									<div className='mb-3'>
+										<button type='button' className='btn btn-secondary btn-lg'>
+											{resource.topic}
+										</button>
+										{resource.type && <ResourceTypeBtn resource={resource} />}
 									</div>
 								</div>
 							</div>

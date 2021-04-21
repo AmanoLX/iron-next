@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { listResources } from '../../services/resource';
-import ResourceList from '../../components/ResourceList';
+import { Link } from 'react-router-dom';
+import ResourceItem from './../../components/ResourceItem';
 
 class ResourcesList extends Component {
 	state = {
@@ -14,7 +15,18 @@ class ResourcesList extends Component {
 		console.log("the resources I'm fetching from the API: ", resources);
 	}
 
+	updateSearch = event => {
+		const value = event.target.value;
+		this.setState({
+			search: value,
+		});
+	};
+
 	render() {
+		let filteredResources = this.state.resources.filter(resource => {
+			return resource.title.toLowerCase().indexOf(this.state.search) !== -1;
+		});
+
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
 				<div className='card form-card bg-light py-3 px-5 w-100'>
@@ -28,13 +40,12 @@ class ResourcesList extends Component {
 									<div className='mb-4'>
 										<form className='d-flex'>
 											<input
-												className='form-control me-2'
-												type='search'
+												className='form-control'
+												type='text'
 												placeholder='Search'
+												value={this.state.search}
+												onChange={this.updateSearch}
 											/>
-											<button className='btn btn-outline-second' type='submit'>
-												Search
-											</button>
 										</form>
 									</div>
 
@@ -46,7 +57,7 @@ class ResourcesList extends Component {
 											id='input-topic'
 											name='topic'
 											value={this.state.resources.topic}
-											onChange={this.handleInputChange}
+											onChange={this.updateSearch}
 											required>
 											<option value='' disabled>
 												Choose an option
@@ -58,7 +69,12 @@ class ResourcesList extends Component {
 								</div>
 								{/* COL RIGHT */}
 								<div className='col-md-8'>
-									<ResourceList resources={this.state.resources} />
+									{filteredResources.map(resource => (
+										<Link key={resource._id} to={`/resource/${resource._id}`}>
+											<ResourceItem resource={resource} />
+										</Link>
+									))}
+									{/* <ResourceList resources={this.state.resources} /> */}
 								</div>
 							</div>
 						</div>

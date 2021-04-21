@@ -199,7 +199,6 @@ class CreateResource extends Component {
 										/>
 									</div>
 								)}
-								{/* )} */}
 
 								{/* Description */}
 								<div className='mb-4'>

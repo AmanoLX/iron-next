@@ -17,7 +17,7 @@ const ResourceItem = ({ resource }) => {
 						</button>
 						{/* Resource Type Btn's */}
 						{resource.type.map(eachType => {
-							return <ResourceTypeBtn type={eachType} />;
+							return <ResourceTypeBtn type={eachType} key={eachType} />;
 						})}
 					</div>
 				</div>

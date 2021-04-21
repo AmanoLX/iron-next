@@ -73,8 +73,29 @@ class EditSingleResource extends Component {
 		await deleteSingleResource(this.props.match.params.id);
 	};
 
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value,
+		});
+	};
+
+	handleCheckboxGroupChange = (name, values) => {
+		this.setState({
+			[name]: values,
+		});
+	};
+
 	render() {
-		const { topic, title, url, possibleTypes, type, description } = this.state;
+		const {
+			topic,
+			title,
+			url,
+			possibleTypes,
+			type,
+			video,
+			description,
+		} = this.state;
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
 				<div className='card form-card bg-light py-3 px-5 w-100'>
@@ -157,6 +178,27 @@ class EditSingleResource extends Component {
 										/>
 									</div>
 								</div>
+
+								{/* Video */}
+								{type.includes('video') && (
+									<div className='mb-3'>
+										<label htmlFor='input-video' className='form-label'>
+											Video link
+										</label>
+										<input
+											className='form-control'
+											type='text'
+											id='input-video'
+											aria-describedby='video'
+											name='video'
+											placeholder='For example: https://www.youtube.com/...'
+											value={video}
+											onChange={this.handleInputChange}
+										/>
+									</div>
+								)}
+
+								{/* Description */}
 								<div className='mb-4'>
 									<label htmlFor='input-description' className='form-label'>
 										Description
@@ -172,8 +214,9 @@ class EditSingleResource extends Component {
 									/>
 								</div>
 
+								{/* Create Btn */}
 								<div className='d-grid'>
-									<button className='btn btn-secondary'>Save</button>
+									<button className='btn btn-secondary'>Save changes</button>
 								</div>
 							</form>
 						</div>
