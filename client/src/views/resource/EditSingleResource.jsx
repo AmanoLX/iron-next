@@ -5,6 +5,7 @@ import {
   deleteSingleResource
 } from './../../services/resource';
 import CheckboxGroup from './../../components/CheckboxGroup';
+//import resource from '../../../../server/models/resource';
 
 class EditSingleResource extends Component {
   state = {
@@ -45,7 +46,14 @@ class EditSingleResource extends Component {
   async componentDidMount() {
     const { resource } = await getSingleResource(this.props.match.params.id);
     console.log('RESOURCE', resource);
-    this.setState({ resource });
+    // this.setState({ resource });
+    this.setState({
+      topic: resource.topic,
+      title: resource.title,
+      url: resource.url,
+      type: resource.type,
+      description: resource.description
+    });
   }
 
   handleFormSubmission = async (event) => {
@@ -58,28 +66,9 @@ class EditSingleResource extends Component {
       type,
       description
     };
-
-    const resource = await editSingleResource(data);
-    // const resource = await createResource({
-    //   topic,
-    //   title,
-    //   url,
-    //   type,
-    //   description
-    // });
-    this.props.history.push(`/resource/${resource._id}`);
+    await editSingleResource(this.props.match.params.id, data);
+    this.props.history.push(`/resource/${this.props.match.params.id}`);
   };
-
-  //   const resource = await createResource(data);
-  //   // const resource = await createResource({
-  //   //   topic,
-  //   //   title,
-  //   //   url,
-  //   //   type,
-  //   //   description
-  //   // });
-  //   this.props.history.push(`/resource/${resource._id}`);
-  // };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -114,11 +103,12 @@ class EditSingleResource extends Component {
                         id="input-title"
                         aria-describedby="title"
                         name="title"
-                        placeholder={
-                          this.state.resource && this.state.resource.title
-                        }
+                        placeholder="title"
+                        // {
+                        //   //this.state.resource && this.state.resource.title
+                        // }
                         required
-                        value={title}
+                        value={this.state.title}
                         onChange={this.handleInputChange}
                       />
                     </div>
@@ -198,7 +188,12 @@ class EditSingleResource extends Component {
 
                   <div className="d-grid">
                     <>
-                      <button className="btn btn-secondary">Save</button>
+                      <button
+                        className="btn btn-secondary"
+                        //onClick={() => this.handleEdit(resource._id)}
+                      >
+                        Save
+                      </button>
                     </>
                   </div>
                 </form>
