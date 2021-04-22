@@ -5,7 +5,7 @@ import './Navbar.css';
 const Navbar = ({ user, onSignOut }) => {
 	return (
 		<>
-			<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-light'>
+			<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-white text-uppercase'>
 				<div className='container-fluid'>
 					<Link className='navbar-brand' to='/'>
 						Iron-next
@@ -95,7 +95,7 @@ const Navbar = ({ user, onSignOut }) => {
 									)}
 
 									<li className='nav-item'>
-										<Link className='nav-link' to='/profile'>
+										<Link className='nav-link' to={`/profile/${user._id}`}>
 											<button className='btn btn-secondary mr-2'>
 												Profile
 											</button>
@@ -116,12 +116,14 @@ const Navbar = ({ user, onSignOut }) => {
 							<ul className='navbar-nav w-100 d-flex justify-content-end'>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-in'>
-										<button className='btn btn-secondary'>Sign In</button>
+										<button className='btn btn-secondary sign-in'>
+											Sign In
+										</button>
 									</Link>
 								</li>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-up'>
-										<button className='btn btn-outline-secondary'>
+										<button className='btn btn-outline-secondary sign-up'>
 											Sign Up
 										</button>
 									</Link>

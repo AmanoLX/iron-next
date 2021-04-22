@@ -70,10 +70,16 @@ class SingleResource extends Component {
 
 									{/* Topic and Types */}
 									<div className='mb-3'>
-										<button type='button' className='btn btn-secondary btn-lg'>
+										<button
+											type='button'
+											className='btn btn-secondary btn-lg me-3'>
 											{resource.topic}
 										</button>
-										{resource.type && <ResourceTypeBtn resource={resource} />}
+										{resource.type &&
+											resource.type.map(type => (
+												//<span>{type}</span>
+												<ResourceTypeBtn type={type} />
+											))}
 									</div>
 								</div>
 							</div>
@@ -90,20 +96,35 @@ class SingleResource extends Component {
 
 								{/* Profile Picture */}
 								<div className='mb-3'>
-									<img
-										src={resource.creator.profilePicture}
-										// src='https://res.cloudinary.com/dwxp3qpyp/image/upload/v1618343657/tcpvkm45o17vmpdrvqe0.jpg'
-										alt={resource.name}
-										className='resource-profile-picture'></img>
+									{(resource.creator.profilePicture && (
+										<img
+											src={resource.creator.profilePicture}
+											alt={resource.creator.name}
+											className='profile-img mb-3'
+										/>
+									)) || (
+										<img
+											src='https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png'
+											alt={resource.creator.name}
+											className='profile-img mb-3'
+										/>
+									)}
 								</div>
 
 								{/* Contact Btn's */}
 								{this.props.user._id !== resource.creator._id && (
-									<div className='mb-3 text-center'>
-										<button type='button' className='btn btn-secondary me-2'>
-											Profile
-										</button>
-										<button type='button' className='btn btn-outline-secondary'>
+									<div className='d-grid gap-2 w-100'>
+										<Link to={`/profile/${resource.creator._id}`}>
+											<button
+												type='button'
+												className='btn btn-outline-secondary w-100'>
+												Profile
+											</button>
+										</Link>
+
+										<button
+											type='button'
+											className='btn btn-outline-secondary w-100'>
 											Message
 										</button>
 									</div>
@@ -112,20 +133,21 @@ class SingleResource extends Component {
 								{/* Edit & Delete Btn's */}
 								{this.props.user &&
 									this.props.user._id === resource.creator._id && (
-										<div className='mb-3 text-center'>
+										<div className='d-grid gap-2 w-100'>
 											<Link to={`/resource/${resource._id}/edit`}>
 												<button
 													type='button'
-													className='btn btn-secondary me-2'>
+													className='btn btn-outline-secondary w-100'>
 													Edit Resource
 												</button>
 											</Link>
-
-											<button
-												className='btn btn-secondary'
-												onClick={() => this.handleDelete(resource._id)}>
-												Delete Resource
-											</button>
+											<Link to={`/resource/list`}>
+												<button
+													className='btn btn-outline-secondary w-100'
+													onClick={() => this.handleDelete(resource._id)}>
+													Delete Resource
+												</button>
+											</Link>
 										</div>
 									)}
 							</div>

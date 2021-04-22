@@ -10,6 +10,11 @@ export const listProjects = async () => {
 	return response.data.projects;
 };
 
+export const myProjects = async () => {
+	const response = await api.get('/project/myprojects');
+	return response.data.projects;
+};
+
 export const loadProject = async id => {
 	const response = await api.get(`/project/${id}`);
 	const project = response.data.project;

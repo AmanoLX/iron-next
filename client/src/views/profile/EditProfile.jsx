@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { editSingleProfile } from './../../services/profile';
 
 class EditProfile extends Component {
 	state = {
@@ -15,28 +16,57 @@ class EditProfile extends Component {
 		linkedInURL: '',
 	};
 
-	// handleFormSubmission = async event => {
-	// 	event.preventDefault();
-	// 	const { name, email, password, profilePicture, graduateType } = this.state;
+	async componentDidMount() {
+		const { user } = await editSingleProfile(this.props.match.params.id);
+		this.setState({
+			name: user.name,
+			email: user.email,
+			password: user.password,
+			profilePicture: user.profilePicture,
+			bio: user.bio,
+			city: user.city,
+			country: user.country,
+			graduateType: user.graduateType,
+			yearOfGraduation: user.yearOfGraduation,
+			githubURL: user.githubURL,
+			linkedInURL: user.linkedInURL,
+		});
+	}
 
-	// 	const user = await signUp({
-	// 		name,
-	// 		email,
-	// 		password,
-	// 		profilePicture,
-	// 		graduateType,
-	// 	});
-	// 	console.log(user);
-	// 	this.props.onUserChange(user);
+	handleFormSubmission = async event => {
+		event.preventDefault();
+		const {
+			name,
+			email,
+			password,
+			profilePicture,
+			bio,
+			city,
+			country,
+			graduateType,
+			yearOfGraduation,
+			githubURL,
+			linkedInURL,
+		} = this.state;
 
-	// 	// const data = new FormData();
-	// 	// const values = { name, email, password, profilePicture };
-	// 	// for (let key in values) {
-	// 	// 	data.append(key, values[key]);
-	// 	// }
-	// 	// const user = await signUp(data);
-	// 	// this.props.onUserChange(user);
-	// };
+		// const user = await signUp({
+		// 	name,
+		// 	email,
+		// 	password,
+		// 	profilePicture,
+		// 	graduateType,
+		// });
+		// console.log(user);
+		// this.props.onUserChange(user);
+
+		const data = new FormData();
+		const values = { name, email, password, profilePicture };
+		for (let key in values) {
+			data.append(key, values[key]);
+		}
+		await editSingleProfile(this.props.match.params.id, data);
+		this.props.history.push(`/profile/${this.props.match.params.id}`);
+	};
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
@@ -67,7 +97,7 @@ class EditProfile extends Component {
 			linkedInURL,
 		} = this.state;
 		return (
-			<section className='d-flex justify-content-center align-items-center'>
+			<section className='d-flex justify-content-center align-items-center my-5'>
 				<div className='card form-card bg-light py-3 px-5 w-100'>
 					<div className='row g-0'>
 						<div className='card-body'>
@@ -85,8 +115,6 @@ class EditProfile extends Component {
 											id='name-input'
 											aria-describedby='name'
 											name='name'
-											required
-											placeholder={this.props.user.name}
 											value={name}
 											onChange={this.handleInputChange}
 										/>
@@ -102,8 +130,6 @@ class EditProfile extends Component {
 											id='email-input'
 											aria-describedby='email'
 											name='email'
-											required
-											placeholder={this.props.user.email}
 											value={email}
 											onChange={this.handleInputChange}
 										/>
@@ -118,7 +144,6 @@ class EditProfile extends Component {
 											id='password-input'
 											type='password'
 											name='password'
-											required
 											value={password}
 											onChange={this.handleInputChange}
 										/>

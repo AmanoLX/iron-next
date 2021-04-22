@@ -15,8 +15,8 @@ const ProjectItem = ({ project }) => {
 						{project.roleNeeded}
 					</button>
 					{/* Project Type Btn's */}
-					{project.skillsNeeded.map(eachType => {
-						return <ProjectTypeBtn type={eachType} key={eachType} />;
+					{project.skillsNeeded.map(eachSkill => {
+						return <ProjectTypeBtn type={eachSkill} key={eachSkill} />;
 					})}
 				</div>
 			</div>

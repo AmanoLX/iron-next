@@ -2,9 +2,8 @@
 const express = require('express');
 
 const Project = require('./../models/project');
-const User = require('./../models/user');
+
 const Participation = require('./../models/participation');
-//const fileUpload = require('./../middleware/file-upload');
 
 const router = new express.Router();
 
@@ -36,7 +35,21 @@ router.post('/create', async (req, res, next) => {
   }
 });
 
+// Projects List
 router.get('/list', async (req, res, next) => {
+  try {
+    const projects = await Project.find()
+      .sort({ addedDate: -1 })
+      .limit(5)
+      .populate('creator');
+    res.json({ projects });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// My Projects List
+router.get('/myprojects', async (req, res, next) => {
   try {
     const projects = await Project.find()
       .sort({ addedDate: -1 })
@@ -66,8 +79,6 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
 });
-
-// Project list
 
 //Edit single project
 router.patch('/:id', async (req, res, next) => {
