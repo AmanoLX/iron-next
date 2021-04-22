@@ -103,7 +103,7 @@ class EditSingleResource extends Component {
                         id="input-title"
                         aria-describedby="title"
                         name="title"
-                        placeholder="title"
+                        placeholder="For example: Flexbox Design Patters"
                         // {
                         //   //this.state.resource && this.state.resource.title
                         // }
@@ -125,9 +125,10 @@ class EditSingleResource extends Component {
                       id="input-url"
                       aria-describedby="url"
                       name="url"
-                      placeholder={
-                        this.state.resource && this.state.resource.url
-                      }
+                      placeholder="or example: https://www.youtube.com/watch?v=vQAvjof1oe4"
+                      // {
+                      //   this.state.resource && this.state.resource.url
+                      // }
                       required
                       value={url}
                       onChange={this.handleInputChange}
@@ -180,7 +181,7 @@ class EditSingleResource extends Component {
                       rows="5"
                       id="input-description"
                       name="description"
-                      placeholder="Short descripton of resource "
+                      placeholder="Short description of resource "
                       value={description}
                       onChange={this.handleInputChange}
                     />
@@ -207,34 +208,3 @@ class EditSingleResource extends Component {
 }
 
 export default EditSingleResource;
-
-// /   handleFormSubmission = (event) => {
-//     event.preventDefault();
-//     const title = this.state.newTask;
-//     if (title) {
-//       this.setState({ newTask: '' });
-//       this.props.onTaskCreate(title);
-//     }
-//   };
-
-//   handleNewTaskChange = (event) => {
-//     const value = event.target.value;
-//     this.setState({
-//       newTask: value
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <form onSubmit={this.handleFormSubmission}>
-//         <input
-//           type="text"
-//           placeholder="Update new task here..."
-//           onChange={this.handleNewTaskChange}
-//           value={this.state.newTask}
-//         />
-//         <button>Edit</button>
-//       </form>
-//     );
-//   }
-// }

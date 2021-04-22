@@ -26,30 +26,6 @@ class SingleResource extends Component {
     await deleteSingleResource(id);
   };
 
-  //   handleEdit = async (id) => {
-  //     const { resource } = await editSingleResource(this.props.match.params.id);
-  //     return resource;
-  //   };
-
-  // handleFormSubmission = async event => {
-  // 	event.preventDefault();
-  // 	const { name, email, password, profilePicture, graduateType } = this.state;
-
-  // 	const user = await signUp({
-  // 		name,
-  // 		email,
-  // 		password,
-  // 		profilePicture,
-  // 		graduateType,
-  // 	});
-  // 	console.log(user);
-  // 	this.props.onUserChange(user);
-
-  //   handleEdit = async () => {
-  //     await editSingleResource(this.props.match.params.id);
-  //     this.setState({ resource });
-  //   };
-
   render() {
     const resource = this.state.resource;
 
@@ -82,12 +58,14 @@ class SingleResource extends Component {
                   </button>
                 </Link>
 
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => this.handleDelete(resource._id)}
-                >
-                  Delete Resource
-                </button>
+                <Link to={'/resource/list'}>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => this.handleDelete(resource._id)}
+                  >
+                    Delete Resource
+                  </button>
+                </Link>
                 {/* <Link to={`/resource/${id}/delete`}>Delete</Link> */}
               </>
             )}
@@ -99,12 +77,3 @@ class SingleResource extends Component {
 }
 
 export default SingleResource;
-
-{
-  /* <button onClick={this.handleEdit}>Edit</button>{' '} */
-}
-{
-  /* <button onClick={this.handleResourceDelete(resource._id)}>
-                  Delete
-                </button> */
-}
