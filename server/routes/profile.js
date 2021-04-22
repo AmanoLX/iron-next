@@ -8,7 +8,7 @@ const router = new express.Router();
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    res.json({ individual: user });
+    res.json({ user });
   } catch (error) {
     next(error);
   }

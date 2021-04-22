@@ -11,7 +11,7 @@ const CheckboxGroup = ({ options, values, onUpdate }) => {
 	return (
 		<div>
 			{options.map(option => (
-				<div className='form-check form-check-inline'>
+				<div className='form-check form-check-inline' key={option.value}>
 					<label
 						className='form-check-label d-flex align-items-center mb-2 mr-3'
 						htmlFor={`input-checkbox-${option.value}`}>

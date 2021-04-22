@@ -10,6 +10,8 @@ import SingleProject from './views/project/SingleProject';
 import EditSingleProject from './views/project/EditSingleProject';
 import ProjectsList from './views/project/ProjectsList';
 
+import MyProjects from './views/project/MyProjects';
+
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
 import ResourcesList from './views/resource/ResourcesList';
@@ -22,7 +24,6 @@ import ErrorPage from './views/ErrorPage';
 import Profile from './views/profile/Profile';
 import EditProfile from './views/profile/EditProfile';
 import Navbar from './components/Navbar';
-// import CreateResource from './views/resource/CreateResource';
 
 export class App extends Component {
   state = {
@@ -69,33 +70,26 @@ export class App extends Component {
 
                 <Route
                   path="/project/list"
-                  component={ProjectsList}
+                  component={ProjectList}
                   // redirect="/project/:id"
                   exact
                 />
-                {/* <Route
-                  path="/project/:id"
-                  component={SingleProject}
-                  // redirect="/project/:id"
-                  exact
-                /> */}
-
                 <Route
                   path="/project/:id"
+                  // component={SingleProject}
+                  // redirect="/project/:id"
                   render={(props) => (
                     <SingleProject {...props} user={this.state.user} />
                   )}
                   exact
                 />
-                {/* <Route
-                  path=“/project/:id”
-                //   component={SingleProject}
-                  // redirect=“/project/:id”
-                  render={(props) => (
-                    <SingleProject {...props} user={this.state.user} />
-                  )}
+
+                <Route
+                  path="/project/myprojects"
+                  component={MyProjects}
+                  // redirect="/project/:id"
                   exact
-                /> */}
+                />
 
                 <Route
                   path="/resource/create"
@@ -127,11 +121,7 @@ export class App extends Component {
                 <Route
                   path="/resource/:id/edit"
                   render={(props) => (
-                    <EditSingleResource
-                      {...props}
-                      user={this.state.user}
-                      resource={this.state.resource}
-                    />
+                    <EditSingleResource {...props} user={this.state.user} />
                   )}
                   exact
                 />
@@ -154,22 +144,23 @@ export class App extends Component {
                   redirect="/profile"
                   exact
                 />
+
                 <ProtectedRoute
-                  path="/profile"
-                  render={(props) => (
-                    <Profile {...props} user={this.state.user} />
-                  )}
-                  authorized={user}
-                  redirect="/sign-in"
-                  exact
-                />
-                <ProtectedRoute
-                  path="/profile/edit"
+                  path={`/profile/:id/edit`}
                   render={(props) => (
                     <EditProfile {...props} user={this.state.user} />
                   )}
                   authorized={user}
                   redirect="/profile"
+                  exact
+                />
+                <Route
+                  path="/profile/:id"
+                  render={(props) => (
+                    <Profile {...props} user={this.state.user} />
+                  )}
+                  authorized={user}
+                  redirect="/sign-in"
                   exact
                 />
                 <Route path="/error" component={ErrorPage} />

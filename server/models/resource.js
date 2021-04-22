@@ -23,6 +23,9 @@ const resourceSchema = new mongoose.Schema(
       enum: ['book', 'video', 'article', 'blog', 'podcast', 'course'],
       required: true
     },
+    video: {
+      type: String
+    },
     description: {
       type: String
     },
