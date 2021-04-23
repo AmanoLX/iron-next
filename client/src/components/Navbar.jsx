@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import logo from './../images/IRONNEXT-logo.png';
 
 const Navbar = ({ user, onSignOut }) => {
 	return (
@@ -8,7 +9,7 @@ const Navbar = ({ user, onSignOut }) => {
 			<nav className='navbar fixed-top navbar-expand-lg navbar-light bg-white text-uppercase'>
 				<div className='container-fluid'>
 					<Link className='navbar-brand' to='/'>
-						Iron-next
+						<img src={logo} alt='logo' />
 					</Link>
 					<button
 						className='navbar-toggler'
@@ -84,9 +85,9 @@ const Navbar = ({ user, onSignOut }) => {
 						{(user && (
 							<ul className='navbar-nav w-100 d-flex text-dark justify-content-end'>
 								<div className='d-flex flex-row align-items-center'>
-									<li className='nav-item'>Welcome {user.name}</li>
+									<li className='nav-item me-3'>Welcome {user.name}</li>
 									{user.profilePicture && (
-										<li className='nav-item'>
+										<li className='nav-item me-3'>
 											<img
 												src={user.profilePicture}
 												alt={user.name}
@@ -96,16 +97,14 @@ const Navbar = ({ user, onSignOut }) => {
 
 									<li className='nav-item'>
 										<Link className='nav-link' to={`/profile/${user._id}`}>
-											<button className='btn btn-secondary mr-2'>
+											<button className='btn btn-primary-outline'>
 												Profile
 											</button>
 										</Link>
 									</li>
 									<li className='nav-item'>
 										<Link className='nav-link' to='/sign-in'>
-											<button
-												className='btn btn-outline-secondary'
-												onClick={onSignOut}>
+											<button className='btn btn-primary' onClick={onSignOut}>
 												Sign Out
 											</button>
 										</Link>
@@ -116,16 +115,12 @@ const Navbar = ({ user, onSignOut }) => {
 							<ul className='navbar-nav w-100 d-flex justify-content-end'>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-in'>
-										<button className='btn btn-secondary sign-in'>
-											Sign In
-										</button>
+										<button className='btn btn-primary-outline'>Sign In</button>
 									</Link>
 								</li>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-up'>
-										<div className='btn btn-outline-secondary sign-up'>
-											Sign Up
-										</div>
+										<div className='btn btn-primary'>Sign Up</div>
 									</Link>
 								</li>
 							</ul>

@@ -218,7 +218,7 @@ class CreateResource extends Component {
 
 								{/* Create Btn */}
 								<div className='d-grid'>
-									<button className='btn btn-secondary'>Create Resource</button>
+									<button className='btn btn-primary'>Create Resource</button>
 								</div>
 							</form>
 						</div>

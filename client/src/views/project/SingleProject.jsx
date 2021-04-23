@@ -14,8 +14,10 @@ class SingleProject extends Component {
 	};
 
 	async componentDidMount() {
-		const { project } = await loadProject(this.props.match.params.id);
-		this.setState({ project });
+		const { project, participation } = await loadProject(
+			this.props.match.params.id
+		);
+		this.setState({ project, participation });
 	}
 
 	handleParticipation = async () => {
@@ -53,7 +55,7 @@ class SingleProject extends Component {
 									<div className='mb-3'>
 										<button
 											type='button'
-											className='btn btn-secondary btn-lg me-3'>
+											className='btn btn-primary btn-lg me-3'>
 											{project.roleNeeded}
 										</button>
 										{project.skillsNeeded &&
@@ -64,7 +66,6 @@ class SingleProject extends Component {
 									</div>
 								</div>
 							</div>
-
 							{/* Creator */}
 							<div className='col-md-4 border-start border-2 p-5 d-flex flex-column align-items-center'>
 								{/* Name */}
@@ -74,7 +75,6 @@ class SingleProject extends Component {
 										{/* // on {project.timestamps.createdAt} */}
 									</h3>
 								</div>
-
 								{/* Profile Picture */}
 								<div className='mb-3'>
 									{(project.creator.profilePicture && (
@@ -91,46 +91,44 @@ class SingleProject extends Component {
 										/>
 									)}
 								</div>
-
 								{/* Contact Btn's */}
 								{this.props.user._id !== project.creator._id && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${project.creator._id}`}>
-											<div
-												type='button'
-												className='btn btn-outline-secondary w-100'>
+											<div type='button' className='btn btn-primary w-100'>
 												Profile
 											</div>
 										</Link>
-
-										<div
-											type='button'
-											className='btn btn-outline-secondary w-100'>
-											Message
-										</div>
 									</div>
 								)}
 
 								{/* Edit & Delete Btn's */}
-								{this.props.user &&
+								{(this.props.user &&
 									this.props.user._id === project.creator._id && (
-										<div className='d-grid gap-2 w-100'>
-											<Link to={`/project/${project._id}/edit`}>
-												<div
-													type='button'
-													className='btn btn-outline-secondary w-100'>
-													Edit Project
-												</div>
+										<>
+											<Link
+												to={`/project/${project._id}/edit`}
+												className='btn btn-primary w-100'>
+												Edit
 											</Link>
-											<Link to={`/project/list`}>
-												<div
-													className='btn btn-outline-secondary w-100'
-													onClick={() => this.handleDelete(project._id)}>
-													Delete Project
-												</div>
-											</Link>
-										</div>
-									)}
+											<button
+												className='btn btn-primary w-100'
+												onClick={() => this.handleDelete(project._id)}>
+												Delete
+											</button>
+										</>
+									)) ||
+									(this.props.user && (
+										/* Participation button */
+										<button
+											className='btn btn-primary w-100 mt-2'
+											//   disabled={this.state.participation}
+											onClick={this.handleParticipation}>
+											{(this.state.participation &&
+												'You are participating in this project!') ||
+												'Participate in this project'}
+										</button>
+									))}
 							</div>
 						</div>
 					)}

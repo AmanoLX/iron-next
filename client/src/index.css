@@ -5,18 +5,8 @@
 }
 
 body {
-	color: rgb(29, 29, 29) !important;
-
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	color: #1f2c44 !important;
+	font-family: 'Lato', sans-serif !important;
 }
 
 /* Images */
@@ -37,7 +27,7 @@ a:link {
 
 a:hover,
 a:focus {
-	color: #3b3d3f !important;
+	color: #48968e !important;
 }
 
 /* List Items */
@@ -59,7 +49,13 @@ main {
 /* Section */
 section {
 	min-height: calc(100vh - 80px);
+	position: relative;
 }
+
+/* Card */
+/* .card {
+	border: 1px solid #d7eeee !important;
+} */
 
 /* Form */
 
@@ -72,12 +68,50 @@ section {
 /* Buttons */
 .btn {
 	border-radius: 100px !important;
+	padding: 0.5em 2em !important;
+}
+
+.btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.btn-primary,
+.btn-primary-outline {
+	font-weight: 700 !important;
+	text-transform: capitalize;
+}
+
+.btn-primary-outline {
+	background-color: #fff !important;
+	border-color: #77c1ba !important;
+	color: #77c1ba !important;
+}
+
+.btn-primary-outline:hover,
+.btn-primary-outline:focus {
+	background-color: #d7eeee !important;
+	border-color: #d7eeee !important;
+	color: #77c1ba !important;
+}
+
+.btn-primary {
+	background-color: #77c1ba !important;
+	border-color: #77c1ba !important;
+	color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+	background-color: #48968e !important;
+	border-color: #48968e !important;
+	color: #fff !important;
 }
 
 /* Video Player */
 .react-player {
 	padding: 15px;
-	border: 1px solid #5c636a;
+	border: 1px solid rgb(218, 218, 218);
 	border-radius: 10px;
 	overflow: hidden;
 }

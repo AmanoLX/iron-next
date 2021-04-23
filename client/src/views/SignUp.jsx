@@ -23,6 +23,7 @@ class SignUp extends Component {
 		for (let key in values) {
 			data.append(key, values[key]);
 		}
+
 		const user = await signUp(data);
 		console.log(user);
 		this.props.onUserChange(user);
@@ -103,7 +104,7 @@ class SignUp extends Component {
 										</div>
 
 										{/* Profile Picture */}
-										<div>
+										<div className='mb-3'>
 											<label htmlFor='picture-input' className='form-label'>
 												Choose a Profile Picture
 											</label>
@@ -117,7 +118,7 @@ class SignUp extends Component {
 										</div>
 										{/* Sign Btn */}
 										<div className='d-grid mb-5'>
-											<button className='btn btn-secondary' type='submit'>
+											<button className='btn btn-primary' type='submit'>
 												Sign Up
 											</button>
 										</div>

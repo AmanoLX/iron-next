@@ -282,7 +282,7 @@ class EditProfile extends Component {
 
 									{/* Sign Btn */}
 									<div className='d-grid mb-5'>
-										<button className='btn btn-secondary' type='submit'>
+										<button className='btn btn-primary' type='submit'>
 											Save Profile
 										</button>
 									</div>

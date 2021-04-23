@@ -114,16 +114,12 @@ class SingleResource extends Component {
 								{this.props.user._id !== resource.creator._id && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${resource.creator._id}`}>
-											<button
-												type='button'
-												className='btn btn-outline-secondary w-100'>
+											<button type='button' className='btn btn-primary w-100'>
 												Profile
 											</button>
 										</Link>
 
-										<button
-											type='button'
-											className='btn btn-outline-secondary w-100'>
+										<button type='button' className='btn btn-primary w-100'>
 											Message
 										</button>
 									</div>
@@ -134,15 +130,13 @@ class SingleResource extends Component {
 									this.props.user._id === resource.creator._id && (
 										<div className='d-grid gap-2 w-100'>
 											<Link to={`/resource/${resource._id}/edit`}>
-												<button
-													type='button'
-													className='btn btn-outline-secondary w-100'>
+												<button type='button' className='btn btn-primary w-100'>
 													Edit Resource
 												</button>
 											</Link>
 											<Link to={`/resource/list`}>
 												<button
-													className='btn btn-outline-secondary w-100'
+													className='btn btn-primary w-100'
 													onClick={() => this.handleDelete(resource._id)}>
 													Delete Resource
 												</button>

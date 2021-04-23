@@ -11,7 +11,7 @@ const ProjectItem = ({ project }) => {
 				<h5>Created by {project.creator.name}</h5>
 				<div>
 					{/* Topic Btn */}
-					<button type='button ' className='btn btn-secondary me-3'>
+					<button type='button' className='btn btn-primary me-3'>
 						{project.roleNeeded}
 					</button>
 					{/* Project Type Btn's */}

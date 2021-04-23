@@ -12,7 +12,7 @@ const ResourceItem = ({ resource }) => {
 					<h5>Created by {resource.creator.name}</h5>
 					<div>
 						{/* Topic Btn */}
-						<button type='button ' className='btn btn-secondary me-3'>
+						<button type='button ' className='btn btn-primary me-3'>
 							{resource.topic}
 						</button>
 						{/* Resource Type Btn's */}

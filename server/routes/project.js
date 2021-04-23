@@ -101,7 +101,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/:id/participate', async (req, res, next) => {
+router.post('/:id/participation', async (req, res, next) => {
   try {
     const participation = await Participation.create({
       user: req.user._id,

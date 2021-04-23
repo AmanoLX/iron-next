@@ -202,7 +202,7 @@ class CreateProject extends Component {
 
 								{/* Create Btn */}
 								<div className='d-grid'>
-									<button className='btn btn-secondary'>Create Project</button>
+									<button className='btn btn-primary'>Create Project</button>
 								</div>
 							</form>
 						</div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { verify } from './../services/authentication';
+import { Link } from 'react-router-dom';
+import homeImgNot from './../images/home-not-loggedin.jpg';
 
 class Home extends Component {
 	state = {
@@ -16,19 +18,31 @@ class Home extends Component {
 
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
-				<div className='card form-card bg-light py-3 px-5 w-100'>
-					<div className='row g-0'>
-						{(user && <h1>Welcome back {user.name}</h1>) || (
-							<div className='card-body'>
-								<h1>Welcome to Iron-next</h1>
-								<h6>
-									The platform where former Ironhack graduates keep on learning,
-									creating an sharing.
-								</h6>
+				{(user && <h1>Welcome back {user.name}</h1>) || (
+					<div class='row'>
+						<div className='col-md-7 d-flex flex-column'>
+							<h1 className='mb-5'>
+								Team up and build interdisciplinary projects with the help of
+								Ironhack graduates from around the world.
+							</h1>
+							<h4 className='mb-5'>
+								For bootcamp graduates who want to keep learning, sharing and
+								take on the tech world together.
+							</h4>
+							<div>
+								<Link to='/sign-up'>
+									<div className='btn btn-primary btn-lg me-3'>Start now</div>
+								</Link>
+								<Link to='/sign-in'>
+									<div className='btn btn-primary-outline btn-lg'>Log in</div>
+								</Link>
 							</div>
-						)}
+						</div>
+						<div className='col-md-5'>
+							<img src={homeImgNot} alt='' />
+						</div>
 					</div>
-				</div>
+				)}
 			</section>
 		);
 	}

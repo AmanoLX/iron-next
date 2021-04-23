@@ -27,7 +27,7 @@ class Profile extends Component {
 								<div className='card-body'>
 									<div className='row justify-content-between'>
 										{/* COL LEFT */}
-										<div className='col-md-4 pe-5 border-end border-secondary'>
+										<div className='col-md-4 pe-5 border-end'>
 											<div className='d-flex flex-column align-items-center mb-5 text-center'>
 												{(user.profilePicture && (
 													<img
@@ -48,39 +48,11 @@ class Profile extends Component {
 
 											{/* Buttons */}
 											<div className='d-grid gap-2'>
-												{/* <Link to='/profile/'>
-													<div
-														className='btn btn-outline-secondary w-100'
-														type='button'>
-														Dashboard
-													</div>
-												</Link> */}
-												{/* <Link to='/project/myprojects'>
-													<button
-														className='btn btn-outline-secondary w-100'
-														type='button'>
-														My Projects
-													</button>
-												</Link>
-												<Link to='/profile/'>
-													<button
-														className='btn btn-outline-secondary w-100'
-														type='button'>
-														My Resources
-													</button>
-												</Link> */}
 												<Link to={`/profile/${user._id}/edit`}>
 													<div
-														className='btn btn-outline-secondary w-100'
+														className='btn btn-primary-outline w-100'
 														type='button'>
 														Edit Profile
-													</div>
-												</Link>
-												<Link to='/profile/edit'>
-													<div
-														className='btn btn-outline-secondary w-100'
-														type='button'>
-														Delete Profile
 													</div>
 												</Link>
 											</div>
@@ -88,28 +60,11 @@ class Profile extends Component {
 
 										{/* COL RIGHT */}
 										<div className='col-md-8 ps-5'>
-											<div className='bio d-flex flex-column justify-content-between mb-5 border-bottom border-secondary pb-3'>
+											<div className='bio d-flex flex-column justify-content-between'>
 												<h2>Bio</h2>
-												{(user.bio && (
-													<p>
-														Lorem ipsum dolor sit amet consectetur adipisicing
-														elit. Fugiat est, omnis voluptas sapiente distinctio
-														sequi aperiam necessitatibus sed quis voluptates
-														corrupti, maiores placeat excepturi ipsa incidunt
-														aliquid esse quisquam. Perspiciatis ad aliquam
-														reprehenderit voluptatum quaerat vero praesentium
-														nobis!
-													</p>
-												)) || (
+												{(user.bio && <p>{user.bio}</p>) || (
 													<div className='mb-3'>
 														<p>No bio yet. Complete your profile right now.</p>
-														<Link to={`/profile/${user._id}/edit`}>
-															<div
-																className='btn btn-outline-secondary'
-																type='button'>
-																Edit Profile
-															</div>
-														</Link>
 													</div>
 												)}
 												{user.city && user.country && (

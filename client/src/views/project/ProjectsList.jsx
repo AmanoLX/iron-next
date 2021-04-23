@@ -47,25 +47,8 @@ class ProjectsList extends Component {
 											/>
 										</form>
 									</div>
-
-									{/* Topic
-									<div className='mb-3'>
-										<select
-											className='form-select'
-											aria-label='Default select example'
-											id='input-topic'
-											name='topic'
-											value={this.state.resources.topic}
-											onChange={this.updateSearch}
-											required>
-											<option value='' disabled>
-												Choose an option
-											</option>
-											<option value='Web Development'>Web Development</option>
-											<option value='UX/UI Design'>UX/UI Design</option>
-										</select>
-									</div> */}
 								</div>
+
 								{/* COL RIGHT */}
 								<div className='col-md-8'>
 									{filteredProjects.map(project => (
@@ -73,7 +56,6 @@ class ProjectsList extends Component {
 											<ProjectItem project={project} />
 										</Link>
 									))}
-									{/* <ResourceList resources={this.state.resources} /> */}
 								</div>
 							</div>
 						</div>

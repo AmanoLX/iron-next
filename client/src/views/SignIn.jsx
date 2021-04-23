@@ -57,7 +57,7 @@ class SignIn extends Component {
 											/>
 										</div>
 										{/* Password */}
-										<div>
+										<div className='mb-3'>
 											<label htmlFor='password-input' className='form-label'>
 												Password
 											</label>
@@ -72,7 +72,7 @@ class SignIn extends Component {
 											/>
 										</div>
 										<div className='d-grid mb-5'>
-											<button className='btn btn-secondary' type='submit'>
+											<button className='btn btn-primary' type='submit'>
 												Sign In
 											</button>
 										</div>
