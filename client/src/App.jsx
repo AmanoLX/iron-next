@@ -8,9 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import CreateProject from './views/project/CreateProject';
 import SingleProject from './views/project/SingleProject';
 import EditSingleProject from './views/project/EditSingleProject';
-import ProjectList from './views/project/ProjectsList';
-
-import MyProjects from './views/project/MyProjects';
+import ProjectsList from './views/project/ProjectsList';
 
 import CreateResource from './views/resource/CreateResource';
 import SingleResource from './views/resource/SingleResource';
@@ -70,24 +68,25 @@ export class App extends Component {
 
 								<Route
 									path='/project/list'
-									component={ProjectList}
-									// redirect="/project/:id"
+									component={ProjectsList}
+									redirect='/'
 									exact
 								/>
 								<Route
 									path='/project/:id'
-									// component={SingleProject}
-									// redirect="/project/:id"
 									render={props => (
 										<SingleProject {...props} user={this.state.user} />
 									)}
+									redirect='/project/list'
 									exact
 								/>
 
 								<Route
-									path='/project/myprojects'
-									component={MyProjects}
-									// redirect="/project/:id"
+									path='/project/:id/edit'
+									render={props => (
+										<EditSingleProject {...props} user={this.state.user} />
+									)}
+									redirect='/project/:id'
 									exact
 								/>
 
@@ -108,13 +107,8 @@ export class App extends Component {
 								<Route
 									path='/resource/:id'
 									render={props => (
-										<SingleResource
-											{...props}
-											user={this.state.user}
-											//onUserChange={this.handleUserChange}
-										/>
+										<SingleResource {...props} user={this.state.user} />
 									)}
-									//redirect="/resource/:id"
 									exact
 								/>
 
@@ -141,7 +135,7 @@ export class App extends Component {
 										<SignUp {...props} onUserChange={this.handleUserChange} />
 									)}
 									authorized={!user}
-									redirect='/profile'
+									redirect='/profile/:id'
 									exact
 								/>
 
@@ -169,7 +163,6 @@ export class App extends Component {
 								) : (
 									<Redirect to='/error' />
 								)}
-								{/* <Redirect to='/error' /> */}
 							</Switch>
 						)}
 					</div>

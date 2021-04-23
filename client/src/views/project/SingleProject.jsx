@@ -96,18 +96,18 @@ class SingleProject extends Component {
 								{this.props.user._id !== project.creator._id && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${project.creator._id}`}>
-											<button
+											<div
 												type='button'
 												className='btn btn-outline-secondary w-100'>
 												Profile
-											</button>
+											</div>
 										</Link>
 
-										<button
+										<div
 											type='button'
 											className='btn btn-outline-secondary w-100'>
 											Message
-										</button>
+										</div>
 									</div>
 								)}
 
@@ -116,18 +116,18 @@ class SingleProject extends Component {
 									this.props.user._id === project.creator._id && (
 										<div className='d-grid gap-2 w-100'>
 											<Link to={`/project/${project._id}/edit`}>
-												<button
+												<div
 													type='button'
 													className='btn btn-outline-secondary w-100'>
 													Edit Project
-												</button>
+												</div>
 											</Link>
 											<Link to={`/project/list`}>
-												<button
+												<div
 													className='btn btn-outline-secondary w-100'
 													onClick={() => this.handleDelete(project._id)}>
 													Delete Project
-												</button>
+												</div>
 											</Link>
 										</div>
 									)}

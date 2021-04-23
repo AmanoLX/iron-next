@@ -74,10 +74,17 @@ router.delete('/:id/delete', async (req, res, next) => {
 });
 
 router.patch('/:id/edit', async (req, res, next) => {
+  const { topic, title, url, type, video, description } = req.body;
+  const data = {
+    topic,
+    title,
+    url,
+    type,
+    video,
+    description
+  };
   try {
-    const resource = await Resource.findById(req.params.id).populate({
-      path: 'creator'
-    });
+    const resource = await Resource.findByIdAndUpdate(req.params.id, data);
     res.json({ resource: resource });
   } catch (error) {
     next(error);

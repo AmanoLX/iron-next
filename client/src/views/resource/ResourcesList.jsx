@@ -40,31 +40,12 @@ class ResourcesList extends Component {
 										<form className='d-flex'>
 											<input
 												className='form-control me-2'
-												type='search'
+												type='text'
 												placeholder='Search'
+												value={this.state.search}
+												onChange={this.updateSearch}
 											/>
-											<button className='btn btn-outline-second' type='submit'>
-												Search
-											</button>
 										</form>
-									</div>
-
-									{/* Topic */}
-									<div className='mb-3'>
-										<select
-											className='form-select'
-											aria-label='Default select example'
-											id='input-topic'
-											name='topic'
-											value={this.state.resources.topic}
-											onChange={this.handleInputChange}
-											required>
-											<option value='' disabled>
-												Choose an option
-											</option>
-											<option value='Web Development'>Web Development</option>
-											<option value='UX/UI Design'>UX/UI Design</option>
-										</select>
 									</div>
 								</div>
 								{/* COL RIGHT */}

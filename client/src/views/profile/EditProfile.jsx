@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { editSingleProfile } from './../../services/profile';
+import { loadProfile, editSingleProfile } from './../../services/profile';
 
 class EditProfile extends Component {
 	state = {
 		name: '',
 		email: '',
-		password: '',
 		profilePicture: '',
 		bio: '',
 		city: '',
@@ -17,11 +16,10 @@ class EditProfile extends Component {
 	};
 
 	async componentDidMount() {
-		const { user } = await editSingleProfile(this.props.match.params.id);
+		const user = await loadProfile(this.props.match.params.id);
 		this.setState({
 			name: user.name,
 			email: user.email,
-			password: user.password,
 			profilePicture: user.profilePicture,
 			bio: user.bio,
 			city: user.city,
@@ -38,7 +36,6 @@ class EditProfile extends Component {
 		const {
 			name,
 			email,
-			password,
 			profilePicture,
 			bio,
 			city,
@@ -59,11 +56,25 @@ class EditProfile extends Component {
 		// console.log(user);
 		// this.props.onUserChange(user);
 
+		const values = {
+			name,
+			email,
+			profilePicture,
+			bio,
+			city,
+			country,
+			graduateType,
+			yearOfGraduation,
+			githubURL,
+			linkedInURL,
+		};
+		let data = values;
+		/*
 		const data = new FormData();
-		const values = { name, email, password, profilePicture };
 		for (let key in values) {
 			data.append(key, values[key]);
 		}
+		*/
 		await editSingleProfile(this.props.match.params.id, data);
 		this.props.history.push(`/profile/${this.props.match.params.id}`);
 	};
@@ -87,7 +98,6 @@ class EditProfile extends Component {
 		const {
 			name,
 			email,
-			password,
 			bio,
 			city,
 			country,
@@ -134,20 +144,6 @@ class EditProfile extends Component {
 											onChange={this.handleInputChange}
 										/>
 									</div>
-									{/* Password */}
-									<div>
-										<label htmlFor='password-input' className='form-label'>
-											Password
-										</label>
-										<input
-											className='form-control'
-											id='password-input'
-											type='password'
-											name='password'
-											value={password}
-											onChange={this.handleInputChange}
-										/>
-									</div>
 
 									{/* Profile Picture */}
 									<div>
@@ -164,7 +160,7 @@ class EditProfile extends Component {
 									</div>
 
 									{/* Year of Graduation */}
-									<div className='row g-3'>
+									<div className='row g-2'>
 										<div className='col'>
 											<label
 												htmlFor='graduateType-input'
@@ -204,7 +200,7 @@ class EditProfile extends Component {
 									</div>
 
 									{/* City & Country */}
-									<div className='row g-3'>
+									<div className='row g-2'>
 										<div className='col'>
 											<label htmlFor='city-input' className='form-label'>
 												City

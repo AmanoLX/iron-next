@@ -48,19 +48,6 @@ router.get('/list', async (req, res, next) => {
   }
 });
 
-// My Projects List
-router.get('/myprojects', async (req, res, next) => {
-  try {
-    const projects = await Project.find()
-      .sort({ addedDate: -1 })
-      .limit(5)
-      .populate('creator');
-    res.json({ projects });
-  } catch (error) {
-    next(error);
-  }
-});
-
 // Single project
 router.get('/:id', async (req, res, next) => {
   try {
@@ -81,17 +68,24 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //Edit single project
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id/edit', async (req, res, next) => {
+  const {
+    title,
+    description,
+    roleNeeded,
+    skillsNeeded,
+    projectStatus
+  } = req.body;
+  const data = {
+    title,
+    description,
+    roleNeeded,
+    skillsNeeded,
+    projectStatus
+  };
   try {
-    const project = await Project.findByIdAndUpdate(
-      req.paramas.id,
-      { Title: req.body.title },
-      { Description: req.body.description },
-      { RoleNeeded: req.body.roleNeeded },
-      { SkillsNeeded: req.body.skillsNeeded },
-      { ProjectStatus: req.body.projectStatus }
-    );
-    res.json({ project });
+    const resource = await Project.findByIdAndUpdate(req.params.id, data);
+    res.json({ resource: resource });
   } catch (error) {
     next(error);
   }

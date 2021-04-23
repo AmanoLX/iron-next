@@ -48,14 +48,14 @@ class Profile extends Component {
 
 											{/* Buttons */}
 											<div className='d-grid gap-2'>
-												<Link to='/profile/'>
-													<button
+												{/* <Link to='/profile/'>
+													<div
 														className='btn btn-outline-secondary w-100'
 														type='button'>
 														Dashboard
-													</button>
-												</Link>
-												<Link to='/project/myprojects'>
+													</div>
+												</Link> */}
+												{/* <Link to='/project/myprojects'>
 													<button
 														className='btn btn-outline-secondary w-100'
 														type='button'>
@@ -68,20 +68,20 @@ class Profile extends Component {
 														type='button'>
 														My Resources
 													</button>
-												</Link>
+												</Link> */}
 												<Link to={`/profile/${user._id}/edit`}>
-													<button
+													<div
 														className='btn btn-outline-secondary w-100'
 														type='button'>
 														Edit Profile
-													</button>
+													</div>
 												</Link>
 												<Link to='/profile/edit'>
-													<button
+													<div
 														className='btn btn-outline-secondary w-100'
 														type='button'>
 														Delete Profile
-													</button>
+													</div>
 												</Link>
 											</div>
 										</div>
@@ -104,17 +104,18 @@ class Profile extends Component {
 													<div className='mb-3'>
 														<p>No bio yet. Complete your profile right now.</p>
 														<Link to={`/profile/${user._id}/edit`}>
-															<button
+															<div
 																className='btn btn-outline-secondary'
 																type='button'>
 																Edit Profile
-															</button>
+															</div>
 														</Link>
 													</div>
 												)}
 												{user.city && user.country && (
 													<h5>
-														Location: <span>Lisbon,</span> <span>Portugal</span>
+														Location: <span>{user.city},</span>{' '}
+														<span>{user.country}</span>
 													</h5>
 												)}
 
@@ -127,16 +128,26 @@ class Profile extends Component {
 
 												{/* Social Media Icons */}
 												<ul className='list-group list-group-horizontal'>
-													<li className='me-3'>
-														<Link to={user.githubURL}>
-															<FaGithub size={40} />
-														</Link>
-													</li>
-													<li>
-														<Link to={user.linkedInURL}>
-															<FaLinkedin size={40} />
-														</Link>
-													</li>
+													{user.githubURL && (
+														<li className='me-3'>
+															<a
+																href={user.githubURL}
+																target='_blank'
+																rel='noreferrer'>
+																<FaGithub size={40} />
+															</a>
+														</li>
+													)}
+													{user.linkedInURL && (
+														<li>
+															<a
+																href={user.linkedInURL}
+																target='_blank'
+																rel='noreferrer'>
+																<FaLinkedin size={40} />
+															</a>
+														</li>
+													)}
 												</ul>
 											</div>
 										</div>

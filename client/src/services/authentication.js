@@ -18,3 +18,7 @@ export const verify = async () => {
 	const response = await api.get('/authentication/verify');
 	return response.data.user;
 };
+
+export const deleteUser = async id => {
+	await api.delete(`/authentication/${id}`);
+};

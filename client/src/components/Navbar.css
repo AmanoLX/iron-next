@@ -21,14 +21,14 @@
 .sign-in {
 	background-color: #d7eeee !important;
 	border-color: #d7eeee !important;
-	color: #212c47 !important;
+	color: #77c1ba !important;
 }
 
 .sign-in:hover,
 .sign-in:focus {
 	background-color: #212c47 !important;
 	border-color: #d7eeee !important;
-	color: #d7eeee !important;
+	color: #77c1ba !important;
 }
 
 .sign-up {
@@ -39,7 +39,7 @@
 
 .sign-up:hover,
 .sign-up:focus {
-	background-color: #fff !important;
-	border-color: #77c1ba !important;
-	color: #77c1ba !important;
+	background-color: #5bb1a9 !important;
+	border-color: #5bb1a9 !important;
+	color: #fff !important;
 }

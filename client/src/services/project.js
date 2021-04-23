@@ -10,11 +10,6 @@ export const listProjects = async () => {
 	return response.data.projects;
 };
 
-export const myProjects = async () => {
-	const response = await api.get('/project/myprojects');
-	return response.data.projects;
-};
-
 export const loadProject = async id => {
 	const response = await api.get(`/project/${id}`);
 	const project = response.data.project;
@@ -23,7 +18,7 @@ export const loadProject = async id => {
 };
 
 export const editProject = async (id, data) => {
-	const response = await api.patch(`/project/${id}`, data);
+	const response = await api.patch(`/project/${id}/edit`, data);
 	return response.data.project;
 };
 

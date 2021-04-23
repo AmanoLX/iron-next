@@ -102,7 +102,7 @@ const Navbar = ({ user, onSignOut }) => {
 										</Link>
 									</li>
 									<li className='nav-item'>
-										<Link className='nav-link' to='/sign-out'>
+										<Link className='nav-link' to='/sign-in'>
 											<button
 												className='btn btn-outline-secondary'
 												onClick={onSignOut}>
@@ -123,9 +123,9 @@ const Navbar = ({ user, onSignOut }) => {
 								</li>
 								<li className='nav-item'>
 									<Link className='nav-link' to='/sign-up'>
-										<button className='btn btn-outline-secondary sign-up'>
+										<div className='btn btn-outline-secondary sign-up'>
 											Sign Up
-										</button>
+										</div>
 									</Link>
 								</li>
 							</ul>

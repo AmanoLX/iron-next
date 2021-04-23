@@ -77,7 +77,6 @@ class SingleResource extends Component {
 										</button>
 										{resource.type &&
 											resource.type.map(type => (
-												//<span>{type}</span>
 												<ResourceTypeBtn type={type} />
 											))}
 									</div>
