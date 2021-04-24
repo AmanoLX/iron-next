@@ -47,17 +47,15 @@ class Profile extends Component {
 											</div>
 
 											{/* Buttons */}
-											{user._id === user.creator._id && (
-												<div className='d-grid gap-2'>
-													<Link to={`/profile/${user._id}/edit`}>
-														<div
-															className='btn btn-primary-outline w-100'
-															type='button'>
-															Edit Profile
-														</div>
-													</Link>
-												</div>
-											)}
+											<div className='d-grid gap-2'>
+												<Link to={`/profile/${user._id}/edit`}>
+													<div
+														className='btn btn-primary-outline w-100'
+														type='button'>
+														Edit Profile
+													</div>
+												</Link>
+											</div>
 										</div>
 
 										{/* COL RIGHT */}
