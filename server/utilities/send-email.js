@@ -1,7 +1,9 @@
 'use strict';
 const nodemailer = require('nodemailer');
 const transport = nodemailer.createTransport({
-  service: 'Gmail',
+  host: 'smtp.ethereal.email',
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.GMAIL_ADDRESS,
     pass: process.env.GMAIL_PASSWORD
