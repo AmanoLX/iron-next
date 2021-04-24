@@ -46,16 +46,6 @@ class EditProfile extends Component {
 			linkedInURL,
 		} = this.state;
 
-		// const user = await signUp({
-		// 	name,
-		// 	email,
-		// 	password,
-		// 	profilePicture,
-		// 	graduateType,
-		// });
-		// console.log(user);
-		// this.props.onUserChange(user);
-
 		const values = {
 			name,
 			email,
@@ -168,7 +158,6 @@ class EditProfile extends Component {
 												className='form-select'
 												id='graduateType-input'
 												name='graduateType'
-												placeholder='graduateType'
 												value={graduateType}
 												onChange={this.handleInputChange}>
 												<option value='' disabled>
@@ -189,7 +178,6 @@ class EditProfile extends Component {
 												type='text'
 												id='yearGraduation-input'
 												name='yearOfGraduation'
-												placeholder='yearOfGraduation'
 												value={yearOfGraduation}
 												onChange={this.handleInputChange}
 											/>
@@ -207,7 +195,6 @@ class EditProfile extends Component {
 												className='form-control'
 												id='city-input'
 												name='city'
-												placeholder='city'
 												value={city}
 												onChange={this.handleInputChange}
 											/>
@@ -221,7 +208,6 @@ class EditProfile extends Component {
 												className='form-control'
 												id='country-input'
 												name='country'
-												placeholder='country'
 												value={country}
 												onChange={this.handleInputChange}
 											/>
@@ -239,7 +225,6 @@ class EditProfile extends Component {
 											id='bio-input'
 											name='bio'
 											rows='5'
-											placeholder='bio'
 											value={bio}
 											onChange={this.handleInputChange}
 										/>
@@ -255,7 +240,6 @@ class EditProfile extends Component {
 											type='text'
 											id='github-input'
 											name='githubURL'
-											placeholder='githubURL'
 											value={githubURL}
 											onChange={this.handleInputChange}
 										/>
@@ -271,7 +255,6 @@ class EditProfile extends Component {
 											type='text'
 											id='linkedin-input'
 											name='linkedInURL'
-											placeholder='linkedInURL'
 											value={linkedInURL}
 											onChange={this.handleInputChange}
 										/>
