@@ -47,7 +47,7 @@ class Profile extends Component {
 											</div>
 
 											{/* Buttons */}
-											{user && (
+											{user._id === user.creator._id && (
 												<div className='d-grid gap-2'>
 													<Link to={`/profile/${user._id}/edit`}>
 														<div
