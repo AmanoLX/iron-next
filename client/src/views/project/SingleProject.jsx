@@ -101,9 +101,8 @@ class SingleProject extends Component {
 									)}
 								</div>
 								{/* Contact Btn's */}
-								{!(
-									this.props.user || this.props.user._id !== project.creator._id
-								) && (
+								{(!this.props.user ||
+									this.props.user._id !== project.creator._id) && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${project.creator._id}`}>
 											<div type='button' className='btn btn-primary w-100 mb-2'>
