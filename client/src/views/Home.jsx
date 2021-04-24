@@ -44,7 +44,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div className='col-md-5'>
-							<img src={homeImg} alt='' />
+							<img src={homeImg} alt='homepage' />
 						</div>
 					</div>
 				)) || (
