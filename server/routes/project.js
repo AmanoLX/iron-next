@@ -2,6 +2,8 @@
 const express = require('express');
 
 const Project = require('./../models/project');
+const User = require('./../models/user');
+const sendEmail = require('./../utilities/send-email');
 
 const Participation = require('./../models/participation');
 
@@ -107,16 +109,16 @@ router.post('/:id/participation', async (req, res, next) => {
       user: req.user._id,
       project: req.params.id
     });
-    // const project = await Project.findById(req.params.id);
-    // const creator = await User.findById(project.creator);
-    // await sendEmail({
-    //   receiver: shelter.email,
-    //   subject: `${req.user.name} applied to participate in project ${project.title}`,
-    //   body: `
-    //       <p>${req.user.name} applied to participate in project ${project.title}.</p>
-    //       <p>${req.user.name}'s email is "${req.user.email}".</p>
-    //     `
-    // });
+    const project = await Project.findById(req.params.id);
+    const user = await User.findById(project.creator);
+    await sendEmail({
+      receiver: user.email,
+      subject: `${req.user.name} applied to participate in project ${project.title}`,
+      body: `
+          <p>${req.user.name} applied to participate in project ${project.title}.</p>
+          <p>${req.user.name}'s email is "${req.user.email}".</p>
+        `
+    });
     res.json({ participation });
   } catch (error) {
     console.log(error);
