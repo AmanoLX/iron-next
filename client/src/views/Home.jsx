@@ -34,7 +34,7 @@ class Home extends Component {
 									<div className='btn btn-primary btn-lg me-3'>Start now</div>
 								</Link>
 								<Link to='/sign-in'>
-									<div className='btn btn-primary-outline btn-lg'>Log in</div>
+									<div className='btn btn-primary-outline btn-lg'>Sign in</div>
 								</Link>
 							</div>
 						</div>

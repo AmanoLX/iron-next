@@ -1,3 +1,7 @@
+.container-fluid {
+	margin: 0 20px !important;
+}
+
 .navbar-brand {
 	width: 200px;
 }

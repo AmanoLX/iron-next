@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { signUp } from './../services/authentication';
+import signUpImg from './../images/sign-up.png';
 
 class SignUp extends Component {
 	state = {
@@ -133,10 +134,7 @@ class SignUp extends Component {
 							</div>
 						</div>
 						<div className='col-md-5 card-image-col d-flex justify-content-center align-items-center'>
-							<img
-								className='img-fluid'
-								src='https://www.mswipe.com/assets/images/signin_marchant_mswipe_Illustrations.svg'
-								alt='signin'></img>
+							<img className='img-fluid' src={signUpImg} alt='signin'></img>
 						</div>
 					</div>
 				</div>
