@@ -199,7 +199,7 @@ class EditSingleProject extends Component {
 
 								{/* Create Btn */}
 								<div className='d-grid'>
-									<button className='btn btn-secondary'>Save Changes</button>
+									<button className='btn btn-primary'>Save Changes</button>
 								</div>
 							</form>
 						</div>

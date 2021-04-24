@@ -112,17 +112,14 @@ class SingleResource extends Component {
 								</div>
 
 								{/* Contact Btn's */}
-								{this.props.user._id !== resource.creator._id && (
+								{(!this.props.user ||
+									this.props.user._id !== resource.creator._id) && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${resource.creator._id}`}>
 											<button type='button' className='btn btn-primary w-100'>
 												Profile
 											</button>
 										</Link>
-
-										<button type='button' className='btn btn-primary w-100'>
-											Message
-										</button>
 									</div>
 								)}
 

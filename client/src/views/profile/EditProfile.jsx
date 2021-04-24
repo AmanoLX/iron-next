@@ -68,13 +68,10 @@ class EditProfile extends Component {
 			githubURL,
 			linkedInURL,
 		};
-		let data = values;
-		/*
 		const data = new FormData();
 		for (let key in values) {
 			data.append(key, values[key]);
 		}
-		*/
 		await editSingleProfile(this.props.match.params.id, data);
 		this.props.history.push(`/profile/${this.props.match.params.id}`);
 	};
@@ -171,7 +168,7 @@ class EditProfile extends Component {
 												className='form-select'
 												id='graduateType-input'
 												name='graduateType'
-												placeholder={this.props.user.graduateType}
+												placeholder='graduateType'
 												value={graduateType}
 												onChange={this.handleInputChange}>
 												<option value='' disabled>
@@ -192,7 +189,7 @@ class EditProfile extends Component {
 												type='text'
 												id='yearGraduation-input'
 												name='yearOfGraduation'
-												placeholder={this.props.user.yearOfGraduation}
+												placeholder='yearOfGraduation'
 												value={yearOfGraduation}
 												onChange={this.handleInputChange}
 											/>
@@ -210,7 +207,7 @@ class EditProfile extends Component {
 												className='form-control'
 												id='city-input'
 												name='city'
-												placeholder={this.props.user.city}
+												placeholder='city'
 												value={city}
 												onChange={this.handleInputChange}
 											/>
@@ -224,7 +221,7 @@ class EditProfile extends Component {
 												className='form-control'
 												id='country-input'
 												name='country'
-												placeholder={this.props.user.country}
+												placeholder='country'
 												value={country}
 												onChange={this.handleInputChange}
 											/>
@@ -242,7 +239,7 @@ class EditProfile extends Component {
 											id='bio-input'
 											name='bio'
 											rows='5'
-											placeholder={this.props.user.bio}
+											placeholder='bio'
 											value={bio}
 											onChange={this.handleInputChange}
 										/>
@@ -258,7 +255,7 @@ class EditProfile extends Component {
 											type='text'
 											id='github-input'
 											name='githubURL'
-											placeholder={this.props.user.githubURL}
+											placeholder='githubURL'
 											value={githubURL}
 											onChange={this.handleInputChange}
 										/>
@@ -274,7 +271,7 @@ class EditProfile extends Component {
 											type='text'
 											id='linkedin-input'
 											name='linkedInURL'
-											placeholder={this.props.user.linkedInURL}
+											placeholder='linkedInURL'
 											value={linkedInURL}
 											onChange={this.handleInputChange}
 										/>

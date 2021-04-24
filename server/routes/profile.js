@@ -22,7 +22,6 @@ router.patch(
     const {
       name,
       email,
-      profilePicture,
       bio,
       city,
       country,
@@ -31,15 +30,19 @@ router.patch(
       githubURL,
       linkedInURL
     } = req.body;
+    let profilePicture;
+    if (req.file) {
+      profilePicture = req.file.path;
+    }
     const data = {
       name,
       email,
-      profilePicture,
       bio,
       city,
       country,
       graduateType,
       yearOfGraduation,
+      profilePicture,
       githubURL,
       linkedInURL
     };

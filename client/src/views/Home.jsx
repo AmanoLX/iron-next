@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { verify } from './../services/authentication';
 import { Link } from 'react-router-dom';
 import homeImgNot from './../images/home-not-loggedin.jpg';
+import homeImg from './../images/home-loggedin.png';
 
 class Home extends Component {
 	state = {
@@ -43,7 +44,7 @@ class Home extends Component {
 							</div>
 						</div>
 						<div className='col-md-5'>
-							<img src={homeImgNot} alt='' />
+							<img src={homeImg} alt='' />
 						</div>
 					</div>
 				)) || (

@@ -135,7 +135,7 @@ export class App extends Component {
 										<SignUp {...props} onUserChange={this.handleUserChange} />
 									)}
 									authorized={!user}
-									redirect='/profile/:id'
+									redirect={user && `/profile/${user._id}`}
 									exact
 								/>
 
