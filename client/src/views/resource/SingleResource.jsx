@@ -21,6 +21,7 @@ class SingleResource extends Component {
 
 	handleDelete = async id => {
 		await deleteSingleResource(id);
+		this.props.history.push(`/resource/list`);
 	};
 
 	render() {
