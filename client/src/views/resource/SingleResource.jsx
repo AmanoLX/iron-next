@@ -27,7 +27,7 @@ class SingleResource extends Component {
 	render() {
 		const resource = this.state.resource;
 		return (
-			<section className='d-flex justify-content-center align-items-center'>
+			<section className='d-flex justify-content-center align-items-center py-5'>
 				<div className='card form-card bg-light w-100'>
 					{resource && (
 						<div className='row g-0'>
@@ -73,7 +73,7 @@ class SingleResource extends Component {
 									<div className='mb-3'>
 										<button
 											type='button'
-											className='btn btn-secondary btn-lg me-3'>
+											className='btn btn-primary btn-lg me-3'>
 											{resource.topic}
 										</button>
 										{resource.type &&

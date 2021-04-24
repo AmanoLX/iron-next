@@ -29,6 +29,7 @@ class SingleProject extends Component {
 
 	handleDelete = async id => {
 		await deleteProject(id);
+		this.props.history.push(`/project/list`);
 	};
 
 	render() {
@@ -42,6 +43,14 @@ class SingleProject extends Component {
 								<div className='card-body'>
 									{/* Title */}
 									<h1 className='mb-4'>{project.title}</h1>
+
+									{/* Project Status */}
+									{project.projectStatus && (
+										<div className='mb-3'>
+											<h4>Project Status</h4>
+											<p>{project.projectStatus}</p>
+										</div>
+									)}
 
 									{/* Description */}
 									{project.description && (
@@ -95,7 +104,7 @@ class SingleProject extends Component {
 								{this.props.user._id !== project.creator._id && (
 									<div className='d-grid gap-2 w-100'>
 										<Link to={`/profile/${project.creator._id}`}>
-											<div type='button' className='btn btn-primary w-100'>
+											<div type='button' className='btn btn-primary w-100 mb-2'>
 												Profile
 											</div>
 										</Link>
@@ -108,27 +117,31 @@ class SingleProject extends Component {
 										<>
 											<Link
 												to={`/project/${project._id}/edit`}
-												className='btn btn-primary w-100'>
-												Edit
+												className='btn btn-primary w-100 mb-2'>
+												Edit Project
 											</Link>
 											<button
-												className='btn btn-primary w-100'
+												className='btn btn-primary w-100 '
 												onClick={() => this.handleDelete(project._id)}>
-												Delete
+												Delete Project
 											</button>
 										</>
 									)) ||
-									(this.props.user && (
+									(this.props.user &&
 										/* Participation button */
-										<button
-											className='btn btn-primary w-100 mt-2'
-											//   disabled={this.state.participation}
-											onClick={this.handleParticipation}>
-											{(this.state.participation &&
-												'You are participating in this project!') ||
-												'Participate in this project'}
-										</button>
-									))}
+										((this.state.participation && (
+											<button
+												className='btn btn-secondary w-100 '
+												onClick={this.handleParticipation}>
+												You are participating in this project!
+											</button>
+										)) || (
+											<button
+												className='btn btn-primary w-100'
+												onClick={this.handleParticipation}>
+												Participate in this project
+											</button>
+										)))}
 							</div>
 						</div>
 					)}
@@ -139,38 +152,3 @@ class SingleProject extends Component {
 }
 
 export default SingleProject;
-
-/* <section className='d-flex justify-content-center align-items-center'>
-				<div className='card form-card bg-light w-100'>
-					{project && (
-						<div>
-							<h1>{project.title}</h1>
-							<h2>{project.projectStatus}</h2>
-							<span>{project.description}</span>
-							<br />
-							<span>
-								{project.roleNeeded} {project.skillsNeeded}
-							</span>
-							<br />
-
-							<small>Shared by {project.creator && project.creator.name}</small>
-							{this.props.user &&
-								this.props.user._id === project.creator._id &&
-								((
-									<>
-										<button>Edit</button> <button>Delete</button>
-									</>
-								) || (
-									<button
-										className='button'
-										//   disabled={this.state.participation}
-										onClick={this.handleParticipation}>
-										{(this.state.participation &&
-											'You are participating on this project!') ||
-											'Participate in this project'}
-									</button>
-								))}
-						</div>
-					)}
-				</div>
-			</section> */

@@ -18,7 +18,35 @@ class Home extends Component {
 
 		return (
 			<section className='d-flex justify-content-center align-items-center'>
-				{(user && <h1>Welcome back {user.name}</h1>) || (
+				{(user && (
+					<div class='row'>
+						<div className='col-md-7 d-flex flex-column'>
+							<h1 className='mb-5'>
+								Team up and build interdisciplinary projects with the help of
+								Ironhack graduates from around the world.
+							</h1>
+							<h4 className='mb-5'>
+								For bootcamp graduates who want to keep learning, sharing and
+								take on the tech world together.
+							</h4>
+							<div>
+								<Link to='/project/create'>
+									<div className='btn btn-primary btn-lg me-3'>
+										Create Project
+									</div>
+								</Link>
+								<Link to='/resource/create'>
+									<div className='btn btn-primary-outline btn-lg'>
+										Share Resource
+									</div>
+								</Link>
+							</div>
+						</div>
+						<div className='col-md-5'>
+							<img src={homeImgNot} alt='' />
+						</div>
+					</div>
+				)) || (
 					<div class='row'>
 						<div className='col-md-7 d-flex flex-column'>
 							<h1 className='mb-5'>

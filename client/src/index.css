@@ -108,6 +108,17 @@ section {
 	color: #fff !important;
 }
 
+.btn-secondary {
+	background-color: #f47458 !important;
+	border-color: #f47458 !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+	background-color: #f26140 !important;
+	border-color: #f26140 !important;
+}
+
 /* Video Player */
 .react-player {
 	padding: 15px;
